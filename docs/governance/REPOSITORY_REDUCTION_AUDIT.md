@@ -2,6 +2,8 @@
 
 **Baseline:** `main` at `ddc11cfc8cc686652a5bf28eef67153bc19a3044` on 2026-10-15. The baseline contained 127 tracked files. Classifications below were made before cleanup; `REFERENCE` files are pinned Foundation material and are not runtime selection decisions.
 
+The executed verification evidence for this audit and its acceptance criteria is in [Repository Reduction Verification Evidence](REPOSITORY_REDUCTION_VERIFICATION.md).
+
 | File | Classification | Rationale |
 |---|---|---|
 | `.github/copilot-instructions.md` | ADAPT | Replace template/UI guidance with SDK boundary guidance. |

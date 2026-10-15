@@ -2,7 +2,7 @@
 
 ## Repository-foundation baseline
 
-The template-reduction task may be verified against `AIC-SCOPE-001` after its recorded checks pass. It is **not** a product-release certification.
+The template-reduction task is verified against `AIC-SCOPE-001` by [Repository Reduction Verification Evidence](../governance/REPOSITORY_REDUCTION_VERIFICATION.md). It is **not** a product-release certification.
 
 No OAuth flow, provider adapter, token storage, package API, hosted service, or license decision is implemented or approved. Therefore `RELEASE_COMPLETE` is not available for a connectivity release.
 
