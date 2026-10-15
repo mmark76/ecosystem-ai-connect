@@ -11,16 +11,31 @@ For every PR-head verification, resolve the baseline and checked-out subject at 
 Run from a clean checkout of the PR branch:
 
 ```powershell
+function Assert-CleanVerificationCheckout {
+    param([Parameter(Mandatory = $true)][string]$Phase)
+
+    $status = @(git status --porcelain=v1 --untracked-files=all)
+    if ($LASTEXITCODE -ne 0) {
+        throw "BLOCKED: unable to determine Git working-tree status before $Phase."
+    }
+    if ($status.Count -gt 0) {
+        throw "BLOCKED: working tree contains staged, unstaged, deleted, untracked, or unmerged changes before $Phase."
+    }
+}
+
 git fetch origin --prune
+Assert-CleanVerificationCheckout 'verification starts'
 $historicalBaseline = 'ddc11cfc8cc686652a5bf28eef67153bc19a3044'
 $mainTip = git rev-parse --verify origin/main
 if ($LASTEXITCODE -ne 0) { throw 'BLOCKED: origin/main is unavailable; fetch complete history before verification.' }
-$head = git rev-parse HEAD
-$mergeBase = git merge-base $mainTip $head
+$head = git rev-parse --verify HEAD
+if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($head)) { throw 'BLOCKED: unable to resolve the checked-out HEAD.' }
+$actualHead = git rev-parse --verify HEAD
+if ($LASTEXITCODE -ne 0 -or $actualHead -ne $head) { throw 'BLOCKED: checked-out HEAD changed while verification was starting.' }
+$mergeBase = git merge-base origin/main HEAD
 if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($mergeBase)) { throw 'BLOCKED: no merge base is available for origin/main and HEAD; fetch the required history without merging or rebasing.' }
 git merge-base --is-ancestor $mergeBase $head
 if ($LASTEXITCODE -ne 0) { throw 'BLOCKED: resolved merge base is not an ancestor of HEAD.' }
-git status --short
 git rev-parse $mainTip
 git rev-parse $mergeBase
 git rev-parse $head
@@ -47,6 +62,9 @@ The final PR evidence must report the resolved revisions, tracked-file counts, c
 git diff --exit-code $mergeBase $head -- FOUNDATION_VERSIONS foundations/
 node scripts/validate-foundations.cjs
 node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs
+Assert-CleanVerificationCheckout 'post-test verification'
+$headAfterTests = git rev-parse --verify HEAD
+if ($LASTEXITCODE -ne 0 -or $headAfterTests -ne $head) { throw 'BLOCKED: checked-out HEAD changed while verification tests ran.' }
 ```
 
 The final PR evidence must report whether the pins and Foundation tree are unchanged, the validator result, and the complete test result. The known `directory symlink/junction inside artifact is rejected` test may be skipped when the execution environment cannot create a symlink or junction. Report that skip as a limitation; never convert it into a pass.
@@ -56,6 +74,18 @@ The final PR evidence must report whether the pins and Foundation tree are uncha
 Run the repository Markdown relative-link assertion, stale-reference assertion outside the reduction audit and this procedure, and assertions for unsupported implementation claims. Review the retained scope, architecture, security, infrastructure, operations, acceptance, traceability, completion, and checklist records against `$head`.
 
 The final PR evidence must report the exact assertion commands and outcomes, including checks that the headless checklist classifications require scope-based justification, accountable ownership, and a re-evaluation trigger, and that deployment records distinguish repository implementation from unverified external infrastructure state.
+
+## Final checkout integrity
+
+After every remaining assertion completes, run the guard once more and confirm that the checked-out revision is still the resolved `$head`:
+
+```powershell
+Assert-CleanVerificationCheckout 'final verification'
+$finalHead = git rev-parse --verify HEAD
+if ($LASTEXITCODE -ne 0 -or $finalHead -ne $head) { throw 'BLOCKED: checked-out HEAD changed before final evidence was recorded.' }
+```
+
+The clean-checkout guards make committed-revision evidence and runtime execution evidence refer to the same repository state. They do not delete, stash, reset, or otherwise alter user work; any detected change is reported as `BLOCKED`.
 
 ## Historical evidence
 
