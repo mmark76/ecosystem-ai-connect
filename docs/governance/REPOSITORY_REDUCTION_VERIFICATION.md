@@ -1,51 +1,60 @@
-# Repository Reduction Verification Evidence
+# Repository Reduction Verification Procedure
 
-## Record scope
+## Purpose and evidence boundary
 
-- **Verified subject commit:** `6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c`
-- **Compared baseline:** `ddc11cfc8cc686652a5bf28eef67153bc19a3044`
-- **Verification date:** 2026-10-15
-- **Verifying mechanism:** Codex executed the recorded commands in a local Windows checkout with Node.js `v24.16.0`.
-- **Scope boundary:** this record verifies the repository-reduction baseline only. It does not verify OAuth, provider connectivity, external GitHub Pages/DNS/Cloudflare state, production readiness, owner approval, or a release.
+This tracked document defines a reproducible repository-reduction procedure. It intentionally does not embed the final SHA or observed results for a PR head: changing this document would otherwise create a new head and invalidate its own evidence reference.
+
+For every PR-head verification, resolve the baseline and checked-out subject at execution time, then record the exact SHA, commands, date, environment limitation, and observed results in a durable PR comment. Link that comment from the applicable review discussion. This procedure verifies repository reduction only; it does not verify OAuth, provider connectivity, external GitHub Pages/DNS/Cloudflare state, production readiness, owner approval, or a release.
+
+## Inputs and execution setup
+
+Run from a clean checkout of the PR branch:
+
+```powershell
+git fetch origin --prune
+$base = git rev-parse origin/main
+$head = git rev-parse HEAD
+git merge-base --is-ancestor $base $head
+git status --short
+git rev-parse $base
+git rev-parse $head
+```
+
+The verifier must report the resolved `$base` and `$head`. `$base` is the verified PR base; `$head` is the actual checked-out revision under review. Do not substitute an earlier subject commit merely because it was the original reduction commit.
 
 ## AIC-AC-001 — Headless repository
 
-| Field | Evidence |
-|---|---|
-| Procedure | Compared baseline and subject commits; inspected the subject tree for removed dashboard/site paths; reviewed the file-level reduction audit. |
-| Commands | `git diff --name-status ddc11cfc8cc686652a5bf28eef67153bc19a3044 6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c`; `git ls-tree -r --name-only 6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c`; headless-path inventory assertion. |
-| Observed result | The diff reported 38 removals, 29 modifications, and 1 addition. The subject tree contains none of the asserted dashboard/site entry points, dashboard workflow/test/build script, or `design-system/` paths. [`REPOSITORY_REDUCTION_AUDIT.md`](REPOSITORY_REDUCTION_AUDIT.md) records each of the 127 baseline files and the rationale for retained references. |
-| Limitation | Source removal does not establish that an external published site, GitHub Pages setting, DNS record, or Cloudflare configuration was disabled; no external infrastructure was queried or changed. |
-| Final status | VERIFIED for the repository-reduction criterion. |
+```powershell
+git ls-tree -r --name-only $base
+git ls-tree -r --name-only $head
+git diff --name-status --find-renames $base $head
+git diff --stat --find-renames $base $head
+```
+
+Compare the baseline inventory with the current head, calculate additions, modifications, deletions, and renames from the name-status output, and validate the resulting baseline classifications against [Repository Reduction Audit](REPOSITORY_REDUCTION_AUDIT.md). Confirm that no removed dashboard/static-site entry point, workflow, test, build script, `design-system/` path, or project-owned UI record is tracked at `$head`.
+
+The final PR evidence must report the resolved revisions, tracked-file counts, change counts, audit result, and headless-path result. Source removal does not establish that an external published site, GitHub Pages setting, DNS record, or Cloudflare configuration was disabled; no external infrastructure is queried or changed by this procedure.
 
 ## AIC-AC-002 — Foundation integrity
 
-| Field | Evidence |
-|---|---|
-| Procedure | Compared the Foundation pins and snapshot between baseline and subject; executed the repository validator and supported Foundation test command. |
-| Commands | `git diff --exit-code ddc11cfc8cc686652a5bf28eef67153bc19a3044 6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c -- FOUNDATION_VERSIONS foundations/`; `node scripts/validate-foundations.cjs`; `node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs`. |
-| Observed result | The Foundation diff command exited successfully with no output: `FOUNDATION_VERSIONS` and `foundations/` are unchanged. The validator reported `status: PASS` and `checkedFiles: 38`. The test run reported 62 tests: 61 passed, 0 failed, 1 skipped. |
-| Skip and limitation | The skipped test is `directory symlink/junction inside artifact is rejected`; its test runner reported that this environment does not permit symlink or junction creation. The skipped case was not executed, so the result does not prove that scenario on a host that can create those filesystem objects. All executable Foundation regressions passed, and the test command exited successfully. |
-| Final status | VERIFIED for the current environment's applicable Foundation integrity checks, with the recorded symlink/junction limitation. |
+```powershell
+git diff --exit-code $base $head -- FOUNDATION_VERSIONS foundations/
+node scripts/validate-foundations.cjs
+node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs
+```
+
+The final PR evidence must report whether the pins and Foundation tree are unchanged, the validator result, and the complete test result. The known `directory symlink/junction inside artifact is rejected` test may be skipped when the execution environment cannot create a symlink or junction. Report that skip as a limitation; never convert it into a pass.
 
 ## AIC-AC-003 — Documentation consistency
 
-| Field | Evidence |
-|---|---|
-| Procedure | Checked retained Markdown links, searched for obsolete dashboard/site implementation references outside the audit, reviewed the project identity, scope, architecture, security, infrastructure, testing, completion, and initialization records, and checked for unsupported implementation claims. |
-| Commands | Repository Markdown relative-link assertion; stale-reference assertion for `PROJECT_DASHBOARD_GUIDE`, `UI_UX_RULES`, removed dashboard files/tests/build script, and site manifest; `rg` assertions for positive claims that OAuth or provider connectivity is implemented. |
-| Observed result | Markdown link check: PASS. Stale-reference check: PASS outside the reduction audit. No positive claim that OAuth or provider connectivity is implemented was found. The retained records consistently state that OAuth, provider integration, deployment, package publication, and license selection are not implemented or remain deferred. |
-| Limitation | This is documentation/repository consistency verification, not implementation verification. It cannot prove the state of external services or future consumer applications. |
-| Final status | VERIFIED for the documented repository-reduction scope. |
+Run the repository Markdown relative-link assertion, stale-reference assertion outside the reduction audit and this procedure, and assertions for unsupported implementation claims. Review the retained scope, architecture, security, infrastructure, operations, acceptance, traceability, completion, and checklist records against `$head`.
 
-## Cross-cutting checks
+The final PR evidence must report the exact assertion commands and outcomes, including checks that the headless checklist classifications require scope-based justification, accountable ownership, and a re-evaluation trigger, and that deployment records distinguish repository implementation from unverified external infrastructure state.
 
-- `git diff --check ddc11cfc8cc686652a5bf28eef67153bc19a3044 6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c` completed without whitespace errors.
-- The Initialization Gate remains `REWORK`; named owners, supported platforms, authorization/provider registration, protected token storage/lifecycle, data classification, and license selection remain unresolved.
+## Historical evidence
 
-## P2 follow-up correction boundary
+The earlier execution against `6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c` compared with `ddc11cfc8cc686652a5bf28eef67153bc19a3044` is historical evidence for the original reduction commit only. Its reported 38 removals, 29 modifications, and 1 addition do not describe later documentation corrections and must not be used as evidence for a later PR head.
 
-- The deployment and operations records distinguish repository implementation and the selected `LOCAL_ONLY` architecture from unverified external infrastructure state; this task neither queried nor changed GitHub Pages, Cloudflare, DNS, hosting accounts, or production resources.
-- Retained project-owned readiness gates require an explicit `NOT_APPLICABLE` record with justification, accountable owner, and re-evaluation trigger when a headless SDK does not own a UI or hosted capability. Those records do not waive controls owned by consuming applications.
-- Follow-up checks passed: `node scripts/validate-foundations.cjs` (`status: PASS`, `checkedFiles: 38`); `node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs` (61 passed, 0 failed, 1 skipped because the current environment cannot create a symlink or junction); repository Markdown relative-link assertion; and the stale-reference assertion outside the reduction audit and verification record.
-- These documentation corrections do not change the acceptance-criteria statuses above or the Initialization Gate `REWORK` decision.
+## Gate boundary
+
+This verification procedure does not change the acceptance-criteria status without a successful execution against the reviewed head, and it is not product-release approval. The Initialization Gate remains `REWORK` until named owners, supported platforms, authorization/provider registration, protected token storage/lifecycle, data classification, and license selection are formally addressed.
