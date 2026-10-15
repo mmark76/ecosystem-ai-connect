@@ -17,7 +17,7 @@ The executed verification evidence for this audit and its acceptance criteria is
 | `CHANGE_CONTROL.md` | KEEP | Scope-control process remains applicable. |
 | `COMPLETION_AND_STOP_PROTOCOL.md` | KEEP | Controlled completion method remains applicable. |
 | `DEFINITION_OF_DONE.md` | ADAPT | Mark standalone UI obligations non-applicable. |
-| `DEPLOYMENT.md` | ADAPT | Record no deployment and `LOCAL_ONLY` boundary. |
+| `DEPLOYMENT.md` | ADAPT | Record the repository deployment boundary and `LOCAL_ONLY` selection; external state remains unverified. |
 | `FOUNDATION_SOURCES.md` | ADAPT | Preserve pins while recording project adoption boundary. |
 | `FOUNDATION_VERSIONS` | REFERENCE | Exact Foundation revision pins. |
 | `FRAMEWORK.md` | ADAPT | Retain method; remove dashboard-specific version language. |
@@ -35,14 +35,14 @@ The executed verification evidence for this audit and its acceptance criteria is
 | `UPGRADE_GUIDE.md` | KEEP | Controlled Foundation upgrade method remains applicable. |
 | `_headers` | REMOVE | Static-site hosting configuration only. |
 | `_redirects` | REMOVE | Static-site hosting configuration only. |
-| `checklists/ARCHITECTURE_GATE.md` | KEEP | Applicable controlled architecture gate. |
+| `checklists/ARCHITECTURE_GATE.md` | ADAPT | Retain the controlled architecture gate with explicit headless applicability records. |
 | `checklists/DEVELOPMENT_READINESS.md` | ADAPT | Headless non-applicability must be applied at review. |
 | `checklists/ENGINEERING_GATE.md` | KEEP | Applicable Engineering Standards gate. |
-| `checklists/FINAL_COMPLETION_GATE.md` | KEEP | Applicable completion gate. |
-| `checklists/INFRASTRUCTURE_READINESS.md` | KEEP | Applicable profile-selection gate. |
+| `checklists/FINAL_COMPLETION_GATE.md` | ADAPT | Retain the completion gate with explicit headless applicability records. |
+| `checklists/INFRASTRUCTURE_READINESS.md` | ADAPT | Retain the profile-selection gate with explicit `LOCAL_ONLY` evidence. |
 | `checklists/INITIALIZATION_GATE.md` | ADAPT | Replace dashboard prompts with headless responsibility. |
-| `checklists/PRODUCTION_READINESS.md` | KEEP | Future release gate; not currently passed. |
-| `checklists/QUALITY_GATE.md` | KEEP | Applicable quality gate. |
+| `checklists/PRODUCTION_READINESS.md` | ADAPT | Future release gate with explicit `LOCAL_ONLY` applicability; not currently passed. |
+| `checklists/QUALITY_GATE.md` | ADAPT | Retain the quality gate with explicit headless UI applicability. |
 | `checklists/SECURITY_GATE.md` | KEEP | Applicable Shield adoption gate. |
 | `checklists/UI_UX_REVIEW.md` | REMOVE | No project-owned UI is in scope. |
 | `dashboard.css` | REMOVE | Dashboard presentation implementation. |
@@ -62,7 +62,7 @@ The executed verification evidence for this audit and its acceptance criteria is
 | `docs/governance/GLOBAL_CODEX_RULES_SYNC.md` | REFERENCE | Required managed-rule synchronization mechanism. |
 | `docs/governance/RISK_REGISTER.md` | ADAPT | Replace examples with SDK risks. |
 | `docs/infrastructure/INFRASTRUCTURE_PROFILE.md` | ADAPT | Select and justify `LOCAL_ONLY`. |
-| `docs/operations/OPERATIONS_AND_RECOVERY.md` | ADAPT | Record absence of deployed operations. |
+| `docs/operations/OPERATIONS_AND_RECOVERY.md` | ADAPT | Record the repository operations boundary without asserting external state. |
 | `docs/product/PROJECT_BRIEF.md` | ADAPT | Replace blank template with actual project brief. |
 | `docs/product/RELEASE_SCOPE.md` | ADAPT | Replace example scope with authorized reduction scope. |
 | `docs/requirements/ACCEPTANCE_CRITERIA.md` | ADAPT | Replace example criteria with measurable reduction criteria. |
@@ -140,4 +140,4 @@ The executed verification evidence for this audit and its acceptance criteria is
 2. Name product, technical, security, privacy, and release owners before development readiness.
 3. Approve the supported platforms, credential/token storage mechanism, authorization flow, provider registration, and token lifecycle before live connectivity.
 
-The baseline includes no evidence of an active published site. This change removes the static-site implementation but does not alter GitHub Pages, DNS, Cloudflare, or any external deployment setting.
+The baseline includes no repository evidence of an active published site. This change removes the static-site implementation but does not query or alter GitHub Pages, DNS, Cloudflare, or any external deployment setting; external infrastructure state remains unverified.

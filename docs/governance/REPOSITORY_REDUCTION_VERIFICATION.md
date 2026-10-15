@@ -42,3 +42,10 @@
 
 - `git diff --check ddc11cfc8cc686652a5bf28eef67153bc19a3044 6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c` completed without whitespace errors.
 - The Initialization Gate remains `REWORK`; named owners, supported platforms, authorization/provider registration, protected token storage/lifecycle, data classification, and license selection remain unresolved.
+
+## P2 follow-up correction boundary
+
+- The deployment and operations records distinguish repository implementation and the selected `LOCAL_ONLY` architecture from unverified external infrastructure state; this task neither queried nor changed GitHub Pages, Cloudflare, DNS, hosting accounts, or production resources.
+- Retained project-owned readiness gates require an explicit `NOT_APPLICABLE` record with justification, accountable owner, and re-evaluation trigger when a headless SDK does not own a UI or hosted capability. Those records do not waive controls owned by consuming applications.
+- Follow-up checks passed: `node scripts/validate-foundations.cjs` (`status: PASS`, `checkedFiles: 38`); `node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs` (61 passed, 0 failed, 1 skipped because the current environment cannot create a symlink or junction); repository Markdown relative-link assertion; and the stale-reference assertion outside the reduction audit and verification record.
+- These documentation corrections do not change the acceptance-criteria statuses above or the Initialization Gate `REWORK` decision.
