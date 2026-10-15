@@ -1,11 +1,13 @@
 # Engineering Standards Adoption Matrix
 
-The authoritative `ENG-*` requirement catalogue is [Ecosystem Engineering Standards](https://github.com/mmark76/Ecosystem-Engineering-Standards/blob/main/ENGINEERING-REQUIREMENTS.md). Do not copy or renumber its normative requirements here.
+The upstream Engineering Standards remain authoritative. This matrix records project applicability; no row is a claim that a future SDK implementation is verified.
 
-For every requirement assessed for this project, record one row. `NOT_APPLICABLE` requires a project-specific rationale. `EXCEPTION` requires explicit permission under the authoritative standard and a link to the project exception record.
-
-| ENG ID | Applicability | Rationale / scope | Implementation reference | Verification / evidence | Owner | Status |
-|---|---|---|---|---|---|---|
-| ENG-EXAMPLE-001 | NOT PROJECT DATA | Replace or remove before approval. | — | — | Unassigned | NOT PROJECT DATA |
-
-Allowed statuses are `PLANNED`, `IMPLEMENTED`, `VERIFIED`, `NOT_APPLICABLE`, and `EXCEPTION`.
+| ENG area | Applicability | Current evidence / decision | Status |
+|---|---|---|---|
+| Architecture and maintainability | APPLICABLE | Headless boundary, dependency direction, and decisions in `docs/architecture/`. | BASELINE RECORDED |
+| API and compatibility | APPLICABLE WHEN SDK API EXISTS | No public SDK contract exists; define compatibility and deprecation policy with the first API. | PLANNED |
+| Testing, documentation, data | APPLICABLE | Current Foundation integrity checks; product records specialized. Runtime tests await implementation. | PARTIAL / PLANNED |
+| Configuration and dependencies | APPLICABLE WHEN IMPLEMENTED | No runtime configuration or dependencies exist. Validate and inventory them before adding. | PLANNED |
+| Security | APPLICABLE | Shield adoption, security plan, and threat model are project records. | BASELINE RECORDED |
+| Reliability, observability, performance | APPLICABLE WHEN RUNTIME EXISTS | No service or runtime exists to measure. Define proportionate requirements with implementation. | NOT_APPLICABLE_CURRENTLY |
+| Deployment | NOT_APPLICABLE_CURRENTLY | `LOCAL_ONLY`; no service deployment is selected. | NOT_APPLICABLE_CURRENTLY |

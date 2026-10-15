@@ -1,55 +1,5 @@
 # Operations and Recovery
 
-## Ownership
-- Service owner:
-- On-call or support owner:
-- Security incident owner:
-- Data recovery owner:
+The selected `LOCAL_ONLY` profile has no deployed service, on-call operation, hosted database, backup, or rollback target. There are therefore no current production operations to certify.
 
-## Environments
-- Local:
-- Development:
-- Testing:
-- Staging:
-- Production:
-
-## Observability
-- Logs:
-- Metrics:
-- Traces:
-- Alerts:
-- Audit events:
-- Sensitive-data logging restrictions:
-
-## Deployment
-- Release method:
-- Approval:
-- Rollout:
-- Health checks:
-- Rollback:
-- Feature flags:
-
-## Incidents
-- Severity levels:
-- Detection:
-- Triage:
-- Containment:
-- Communication:
-- Recovery:
-- Post-incident review:
-
-## Backup and Recovery
-- Backup schedule:
-- Retention:
-- Immutability:
-- Restore procedure:
-- Restore test frequency:
-- RPO:
-- RTO:
-
-## Maintenance
-- Dependency updates:
-- Security patches:
-- Certificate and secret rotation:
-- Database maintenance:
-- End-of-life process:
+For a future SDK release, maintainers must define supported platform/version policy, package release/rollback procedure, vulnerability response, dependency maintenance, security-contact route, token-revocation behavior, user recovery from denied/expired authorization, and non-sensitive diagnostic collection. Any hosted component requires a new infrastructure profile and deployment/recovery plan.

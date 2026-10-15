@@ -1,11 +1,9 @@
 # Objectives
 
-Record approved project objectives here. Objectives must be finite, owned, and traceable to scope, acceptance criteria, implementation, verification, and evidence.
+| Objective ID | Objective | Scope | Mandatory | Status |
+|---|---|---|---|---|
+| AIC-OBJ-001 | Establish a governed, headless, local-first SDK foundation without active dashboard or website functionality. | AIC-SCOPE-001 | Yes | VERIFIED |
+| AIC-OBJ-002 | Preserve Foundation authority, provenance, and applicable local validation. | AIC-SCOPE-001 | Yes | VERIFIED |
+| AIC-OBJ-003 | Record the future provider, authorization, security, and consumer-isolation boundaries without implementing them. | AIC-SCOPE-001 | Yes | VERIFIED |
 
-> Replace or remove every `EXAMPLE-*` row before approval. Template examples are not project data.
-
-| Objective ID | Objective | Scope | Priority | Mandatory | Owner | Acceptance criteria | Status |
-|---|---|---|---|---|---|---|---|
-| EXAMPLE-OBJ-001 | Replace with an approved project objective. | EXAMPLE-SCOPE-001 | — | Yes/No | Unassigned | EXAMPLE-AC-001 | NOT PROJECT DATA |
-
-Applicable `ENG-*`, Shield, and Infrastructure requirements are recorded through their dedicated adoption records rather than duplicated here.
+Owner approval and implementation-release objectives remain future work; this record does not authorize live connectivity.

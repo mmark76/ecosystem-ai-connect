@@ -1,21 +1,16 @@
 # Threat Model
 
-Complete this project-owned record before development readiness and reassess it when scope, data, identity, exposure, architecture, dependencies, or deployment changes materially.
-
 ## Context
 
-- Selected Shield source revision/baseline:
-- Assets and data classification:
-- Actors and trust boundaries:
-- Entry points and dependencies:
-- Assumptions and out-of-scope items:
+Planned assets include authorization codes, access/refresh tokens if applicable, provider-account identity, consent records, local configuration, and provider request/response metadata. No such material is currently stored or processed by the repository.
 
-## Threats and treatments
+| Threat ID | Boundary | Treatment required before implementation | Status |
+|---|---|---|---|
+| AIC-THR-001 | Authorization callback | Bind state and PKCE transaction to the initiating user, consumer application, redirect URI, and short expiry; reject replay or mismatch. | PLANNED |
+| AIC-THR-002 | Local token storage | Use a platform-appropriate protected store, least-privilege filesystem/process access, expiry, revocation, and explicit deletion. | PLANNED |
+| AIC-THR-003 | Consumer isolation | Bind credentials and provider session to the consenting user and consumer application; do not reuse across unrelated apps. | PLANNED |
+| AIC-THR-004 | Diagnostics | Structured redaction and safe errors; prohibit tokens, codes, secrets, and sensitive provider payloads in logs. | PLANNED |
+| AIC-THR-005 | External provider boundary | Validate configuration and responses, constrain scopes, handle rate/usage limits, and use timeouts/cancellation. | PLANNED |
+| AIC-THR-006 | Dependency/supply chain | Pin and scan approved dependencies before adding provider libraries. | PLANNED |
 
-> Replace or remove every `EXAMPLE-*` row before approval. Do not place secrets or sensitive operational evidence here.
-
-| Threat ID | Asset / boundary | Threat | Likelihood | Impact | Treatment / control | Verification / evidence | Owner | Status |
-|---|---|---|---|---|---|---|---|---|
-| EXAMPLE-THR-001 | Replace or remove. | Replace or remove. | — | — | Map to an applicable Shield requirement/control. | Define evidence. | Unassigned | NOT PROJECT DATA |
-
-Unknown evidence is not a pass. Record approved deviations in `docs/governance/EXCEPTIONS.md` with risk, compensating controls, owner, approval, and review/expiry details.
+Threat likelihood, impact, owner, and verification evidence require a platform-specific implementation decision. No threat is marked mitigated by this documentation baseline.

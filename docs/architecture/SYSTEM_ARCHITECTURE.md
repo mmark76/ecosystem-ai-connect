@@ -1,75 +1,26 @@
 # System Architecture
 
-## 1. Context
-- System purpose:
-- Users and actors:
-- External systems:
-- System boundary:
-- Trust boundaries:
+## Current state
 
-## 2. Architecture Drivers
-- Key functional drivers:
-- Security drivers:
-- Availability:
-- Performance:
-- Scalability:
-- Maintainability:
-- Accessibility:
-- Cost:
-- Compliance:
+No runtime SDK modules or provider adapters exist yet. This release establishes the intended boundary and does not expose an API or execute provider requests.
 
-## 3. Chosen Architecture
-- Style:
-- Rationale:
-- Alternatives rejected:
-- Known trade-offs:
+## Intended architecture
 
-## 4. Modules and Ownership
+| Boundary | Responsibility | Status |
+|---|---|---|
+| Consumer application | UI, local process, user consent, application authorization, and its own data lifecycle. | Consumer-owned; not implemented here. |
+| SDK public contract | Stable provider-neutral interfaces, error model, configuration contract, and consumer isolation rules. | Planned. |
+| Provider adapter | Provider-specific authorization and request protocol behind the SDK contract. | Planned; OpenAI only is the approved initial direction. |
+| Local secure storage integration | OS-appropriate storage boundary selected by each consumer/platform; no central service or shared credential store. | Planned; owner decision required. |
 
-| Module | Responsibility | Public interface | Data owned | Dependencies | Owner |
-|---|---|---|---|---|---|
-|  |  |  |  |  |  |
+Dependencies flow from consumer application to SDK contract to provider adapter. Provider-specific types, credentials, and transport behavior must not leak into consumer domain code. A future adapter may call an external provider, but the SDK does not host an independent service.
 
-## 5. Dependency Direction
-Document allowed and forbidden dependencies.
+## Trust boundaries
 
-## 6. Data Flow
-Document sensitive and critical data flows.
+- A user authorization is scoped to the user, consumer application, provider client registration, requested scopes, and local process; it is not automatically transferable to another application.
+- Local files, environment variables, IPC, logs, and child processes are untrusted or scoped according to the future platform design.
+- Provider responses and authorization callbacks are external input and require validation.
 
-## 7. Deployment
-- Environments:
-- Network zones:
-- Compute:
-- Database:
-- Storage:
-- Edge / CDN / WAF:
-- Secrets:
-- Observability:
+## Failure posture
 
-## 8. Failure and Recovery
-- Failure modes:
-- Graceful degradation:
-- Retry rules:
-- Idempotency:
-- Rollback:
-- Backup and restore:
-
-## 9. Architecture Health Checks
-List automated or manual checks enforcing invariants.
-
-## Canonical Dashboard Reference Architecture
-
-- Style: repository-root static HTML/CSS/vanilla JavaScript.
-- Presentation: `index.html` and `dashboard.css`.
-- Shell behavior and pure formatting/validation rules: `dashboard.js`.
-- Platform-neutral design source: `design-system/tokens/tokens.json` with the
-  maintained `tokens.css` adapter.
-- Persistence: one optional browser-local appearance record; no server data.
-- External boundary: the explicit ecosystem-return HTTPS link only.
-- Dependencies, backend, authentication, analytics, remote fonts, and
-  third-party scripts: none.
-
-Browser storage is untrusted infrastructure input. `dashboard.js` validates and
-normalizes it before the presentation layer applies bounded data attributes and
-CSS custom properties. All dynamic text uses `textContent`; no HTML string is
-inserted into the DOM.
+No credential may be logged, returned in an error, or written to source control. Provider unavailability, denied consent, invalid state, expired tokens, and rate/usage limits must fail closed with actionable, non-sensitive errors. Exact retry and recovery rules require implementation approval.

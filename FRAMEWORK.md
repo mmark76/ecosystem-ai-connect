@@ -108,8 +108,7 @@ Completion does not mean every possible feature exists, the system can never be 
 versioning. `FOUNDATION_VERSIONS` identifies the assessed upstream revisions.
 Record notable changes in `CHANGELOG.md` and use `UPGRADE_GUIDE.md` when
 adopting a newer integrated template into an existing project. This version does
-not replace the project/application version or the visible build identity
-required by `PROJECT_DASHBOARD_GUIDE.md`.
+not replace the project/application version selected for a future SDK release.
 
 ## Evidence Chain
 

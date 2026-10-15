@@ -1,54 +1,15 @@
 # Test Strategy
 
-This DNA template plans how a project demonstrates `ENG-TEST-001` and other applicable Engineering Standards and Shield requirements. It does not define an independent testing or security standard.
+## Current applicable checks
 
-## Objectives
-Define what confidence each test level must provide.
+| Level | Command | Purpose | Status |
+|---|---|---|---|
+| Foundation integrity | `node scripts/validate-foundations.cjs` | Required imports, revision pins, sensitive-file/credential-shape scan of the Foundation snapshot. | AVAILABLE |
+| Foundation regression | `node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs` | Validates the import gate and pinned Shield utilities. | AVAILABLE |
+| SDK unit/integration/API tests | Not applicable: no SDK implementation exists. | Must be added with approved runtime code. | NOT_APPLICABLE_CURRENTLY |
+| UI/accessibility/browser tests | Not applicable: this project has no UI or site. | Consumer applications own UI verification. | NOT_APPLICABLE |
+| Build, lint, type-check, dependency scan | Not applicable: no build manifest or implementation dependencies exist. | Reassess when implementation begins. | NOT_APPLICABLE_CURRENTLY |
 
-## Test Levels
+## Future implementation evidence
 
-| Level | Scope | Required for | Command | Evidence |
-|---|---|---|---|---|
-| Unit | Pure units and rules | All critical logic |  |  |
-| Component | UI or service components | Applicable projects |  |  |
-| Integration | Boundaries and dependencies | Critical integrations |  |  |
-| API | Contracts and authorization | API projects |  |  |
-| End-to-end | Critical user journeys | Release blockers |  |  |
-| Security | Threats and controls | Risk-based |  |  |
-| Accessibility | User-facing interfaces | Applicable projects |  |  |
-| Performance | Capacity and latency | NFR-driven |  |  |
-| Recovery | Backup and restore | Production systems |  |  |
-
-## Quality Gates
-- Formatting:
-- Linting:
-- Type checking:
-- Build:
-- Static analysis:
-- Dependency scan:
-- Secret scan:
-
-## Framework Canonical Dashboard Shell
-
-This repository's static canonical shell has no dependency manifest or build
-step. Its required dependency-free source checks are:
-
-```powershell
-node --check dashboard.js
-node --test tests/dashboard-shell.test.cjs
-```
-
-The test suite covers build formatting, real-SHA population, `Europe/Nicosia`
-winter/summer DST behavior, appearance validation and storage scope, canonical
-header order, Settings and Info contents, exact footer structure, user-facing
-GitHub absence, unsafe DOM-injection primitives, local script provenance,
-responsive source contracts, and required accessibility semantics.
-
-Browser verification remains mandatory for interactions, persistence after
-reload, focus/Escape behavior, console errors, responsive overflow, text
-scaling, contrast, and visual QA.
-
-## Failure Rules
-- Never hide a failing test.
-- Never delete or weaken a valid test merely to obtain green status.
-- Flaky tests must be repaired, quarantined with approval, or treated as incomplete evidence.
+Before live connectivity, add tests for authorization state and PKCE validation where applicable, redirect/callback validation, token lifecycle and revocation, per-user/per-application isolation, provider adapter contracts, mocked provider errors, safe logging, configuration validation, and dependency/security scanning. Do not add artificial tests before an SDK contract exists.

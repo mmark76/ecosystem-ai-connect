@@ -1,44 +1,24 @@
 # Security Plan
 
-## System Risk Profile
-- Selected Shield revision / baseline:
-- Exposure:
-- Criticality:
-- Data sensitivity:
-- Main threat actors:
-- Regulatory context:
+## Status and authority
 
-## Security Owners
-- Product risk owner:
-- Security owner:
-- Incident owner:
-- Data / privacy owner:
+The Shield remains authoritative. This is a project-owned adoption record for a planned local SDK; it does not implement or verify an authorization flow. The selected source revision is recorded in [`../../FOUNDATION_VERSIONS`](../../FOUNDATION_VERSIONS).
 
-## Required Controls
+## Scope and controls to implement before live connectivity
 
-> **Initialization instruction:** Replace or remove every `EXAMPLE-*` row. It is
-> not an approved control and cannot satisfy a security requirement.
+| Area | Required project decision/control | Status |
+|---|---|---|
+| Consent and authorization | Obtain explicit user consent for the requesting consumer application and minimum scopes; deny by default. | PLANNED |
+| OAuth | Use an approved authorization-code flow with PKCE where the provider flow requires it; validate redirect, issuer, state, nonce where applicable, and code exchange. | PLANNED |
+| Tokens | Store only in an OS-appropriate protected local boundary; define renewal, revocation, expiry, deletion, and per-application isolation. | PLANNED |
+| Secrets | Never embed provider secrets or API keys in source, browser code, logs, screenshots, or error output. | REQUIRED BASELINE |
+| Local trust boundary | Define filesystem permissions, process/IPC boundaries, configuration validation, and unsafe-local-actor assumptions per supported platform. | PLANNED |
+| Provider isolation | Keep provider account/session, user, consumer-app, and environment identities distinct; no authorization sharing by default. | PLANNED |
+| Safe errors and logging | Redact credentials, authorization codes, tokens, provider payloads, and personally identifying data by default. | REQUIRED BASELINE |
+| Usage limits | Surface provider errors and limits safely; do not promise usage, entitlement, or subscription benefits. | PLANNED |
 
-| Control ID | Control | Requirement ID | Owner | Verification | Evidence | Status |
-|---|---|---|---|---|---|---|
-| EXAMPLE-SEC-001 | Replace with a real control or remove this row. | Replace with an approved requirement ID. | Unassigned | Define verification. | Define evidence. | NOT PROJECT DATA |
+Official OpenAI documentation describes Sign in with ChatGPT as a separate authorization and registration path: identity scopes do not grant access to API keys or conversations, and plan-usage scopes require user authorization. The future implementation must re-check the current official requirements before design approval.
 
-For each applicable Shield requirement, retain its authoritative requirement/control ID, source revision, project control mapping, verification, sanitized evidence location, and status. `NOT_APPLICABLE` and exceptions require rationale, owner, approval, and review/expiry details.
+## Owner decisions required
 
-## Areas to Address
-- Identity and access
-- Authentication
-- Authorization
-- Sessions and tokens
-- Input and output handling
-- Browser security
-- API security
-- Data protection
-- Secrets and keys
-- Infrastructure and network
-- Dependencies and supply chain
-- Logging and detection
-- Incident response
-- Backup and recovery
-- Privacy
-- Vulnerability management
+Named security, privacy, incident, and release owners; supported platforms; selected credential storage mechanism; selected authorization flow; token lifecycle; provider registration; data classification; and incident/revocation process remain `NEEDS_DECISION`.

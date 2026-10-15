@@ -1,54 +1,28 @@
 ## Related IDs
-List objective, requirement, defect, risk, or maintenance IDs.
 
-## What changed
+List objective, requirement, risk, defect, or maintenance IDs.
 
-## Why
+## What changed and why
 
 ## Architecture impact
 
+Include public-contract, consumer-isolation, or provider-adapter impact where applicable.
+
 ## Security and data impact
 
-## UI/UX and accessibility impact
-- App theme:
-- Shared components or tokens used:
-- Dashboard guide applicable: Yes / No
-- Header/Footer or main-shell impact:
-- Responsive behavior:
-- Accessibility behavior:
-- Localization impact:
+Identify authorization, consent, token, logging, or dependency implications. Do not include credentials or sensitive operational evidence.
 
 ## Verification
-- [ ] Formatting
-- [ ] Linting
-- [ ] Type checking
-- [ ] Unit tests
-- [ ] Integration / API tests
-- [ ] End-to-end tests
-- [ ] Accessibility checks
-- [ ] Security / dependency scans
-- [ ] Build
 
-### UI checklist when applicable
-- [ ] Approved theme and semantic tokens used
-- [ ] `PROJECT_DASHBOARD_GUIDE.md` followed for dashboard/landing/main-shell work
-- [ ] Project identity, Header, navigation and ecosystem return path checked where applicable
-- [ ] Footer copyright and version/build identification checked where applicable
-- [ ] Narrow, medium, and wide layouts checked
-- [ ] Keyboard and visible focus checked
-- [ ] Contrast and touch targets checked
-- [ ] Loading, empty, error, and success states checked
-- [ ] Greek and English content checked where supported
-- [ ] Screenshots or recordings attached for material visual changes
-- [ ] Deviations documented in `docs/governance/EXCEPTIONS.md`
+- [ ] Foundation integrity check
+- [ ] Relevant tests
+- [ ] Documentation and traceability updated
+- [ ] Security / dependency checks applicable to the change
 
 Commands and results:
 
-## Evidence
-
-## Known limitations
-
-## Deferred work
+## Deferred work and decisions
 
 ## Completion status
+
 `COMPLETE`, `BLOCKED`, `NEEDS_DECISION`, or `CHANGE_REQUEST`

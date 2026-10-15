@@ -1,49 +1,9 @@
-# Release Completion Report
+# Completion Status
 
-## Release
-- Version:
-- Date:
-- Scope freeze reference:
-- Builder:
-- Verifier:
-- Human approver:
+## Repository-foundation baseline
 
-## Objective Summary
-- Approved mandatory objectives:
-- Verified objectives:
-- Failed objectives:
-- Deferred optional objectives:
+The template-reduction task may be verified against `AIC-SCOPE-001` after its recorded checks pass. It is **not** a product-release certification.
 
-## Gate Summary
-- Requirements gate:
-- Architecture gate:
-- Security gate:
-- Quality gate:
-- Data and privacy gate:
-- Production readiness gate:
-- Documentation gate:
+No OAuth flow, provider adapter, token storage, package API, hosted service, or license decision is implemented or approved. Therefore `RELEASE_COMPLETE` is not available for a connectivity release.
 
-## Counts
-- Blocking acceptance criteria passed:
-- Required tests passed:
-- Critical controls passed:
-- Required evidence present:
-- Open blockers:
-- Unaccepted critical risks:
-- Unapproved deviations:
-
-## Known Limitations
-
-## Deferred Work
-Link `FUTURE_BACKLOG.md`.
-
-## Final State
-`RELEASE_COMPLETE`, `CONDITIONAL_PASS`, or `NOT_READY`
-
-## Certification
-
-Use only when the final gate passes:
-
-> RELEASE COMPLETE — 100% OF THE APPROVED IN-SCOPE OBJECTIVES VERIFIED
-
-This certification applies only to the approved release scope and evidence available at the time of verification.
+Before any implementation release, populate the applicable gate evidence, owner approvals, security controls, supported platform decisions, and runtime tests. Do not use the release-completion declaration until those conditions are met.

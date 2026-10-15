@@ -339,13 +339,13 @@ Repository-specific instructions below specialize these shared defaults and take
 
 ## 1. Mission
 
-Build the smallest secure, maintainable, testable, extensible, and consistently usable solution that fully satisfies the approved release scope.
+Build the smallest secure, maintainable, testable headless SDK solution that fully satisfies the approved release scope.
 
 Optimize for verified requirements, architectural health, security, accessibility, UI/UX coherence, clarity, and controlled completion—not theoretical perfection.
 
 ### Foundation Authority
 
-This repository is an Integrated Project Template, not a canonical foundation. Use [Ecosystem Framework — The DNA](https://github.com/mmark76/ecosystem-framework) for lifecycle adoption methods, [Ecosystem Engineering Standards](https://github.com/mmark76/Ecosystem-Engineering-Standards/blob/main/ENGINEERING-REQUIREMENTS.md) for cross-cutting `ENG-*` requirements, Ecosystem Security — The Shield for security requirements and controls, and [Ecosystem Infrastructure](https://github.com/mmark76/ecosystem-infrastructure) for shared infrastructure mechanisms. The instructions below operationalize adoption; they do not create competing engineering, security, or infrastructure standards.
+This repository is an adopting project, not a canonical foundation. Use [Ecosystem Framework — The DNA](https://github.com/mmark76/ecosystem-framework) for lifecycle adoption methods, [Ecosystem Engineering Standards](https://github.com/mmark76/Ecosystem-Engineering-Standards/blob/main/ENGINEERING-REQUIREMENTS.md) for cross-cutting `ENG-*` requirements, Ecosystem Security — The Shield for security requirements and controls, and [Ecosystem Infrastructure](https://github.com/mmark76/ecosystem-infrastructure) for shared infrastructure mechanisms. The instructions below operationalize adoption; they do not create competing engineering, security, or infrastructure standards.
 
 Before copying any Shield material, confirm the target repository visibility and the source material's distribution classification. Never copy credentials, populated configurations, host-specific sensitive information, or private operational evidence.
 
@@ -361,14 +361,15 @@ Before planning or changing code, read the relevant files:
 6. `docs/requirements/TRACEABILITY_MATRIX.md`
 7. `ARCHITECTURE_RULES.md`
 8. `SECURITY_RULES.md`
-9. `UI_UX_RULES.md`
-10. `docs/design/UI_UX_DESIGN_SYSTEM.md` for user-facing work
-11. `PROJECT_DASHBOARD_GUIDE.md` for dashboards, landing pages, project-status pages, and main web interfaces
-12. `DEFINITION_OF_DONE.md`
-13. `COMPLETION_AND_STOP_PROTOCOL.md`
-14. `CHANGE_CONTROL.md`
+9. `docs/security/SECURITY_PLAN.md`
+10. `docs/security/THREAT_MODEL.md`
+11. `docs/infrastructure/INFRASTRUCTURE_PROFILE.md`
+12. `docs/testing/TEST_STRATEGY.md`
+13. `DEFINITION_OF_DONE.md`
+14. `COMPLETION_AND_STOP_PROTOCOL.md`
+15. `CHANGE_CONTROL.md`
 
-Project-specific decisions may specialize these generic rules. They must not silently weaken mandatory architecture, security, accessibility, UI/UX, dashboard identity, evidence, or completion requirements.
+Project-specific decisions may specialize these generic rules. They must not silently weaken mandatory architecture, security, evidence, or completion requirements.
 
 ## 3. Mandatory Task Protocol
 
@@ -380,7 +381,7 @@ For every task:
 4. Plan the smallest coherent change.
 5. Avoid unrelated refactors and speculative improvements.
 6. Implement within the correct module and layer.
-7. Reuse approved design tokens and components for user-facing work.
+7. Keep presentation and consent UX in the consuming application; this SDK must not introduce a standalone UI.
 8. Add or update appropriate tests.
 9. Run the required checks.
 10. Update documentation and the traceability matrix.
@@ -456,48 +457,30 @@ Do not stack conditions, overrides, or patches without addressing the underlying
 - Use `SECURITY_RULES.md` for the adoption workflow and `checklists/SECURITY_GATE.md` for the project verification decision.
 - Treat an unsatisfied critical Shield requirement or unapproved critical exception as a blocking condition and escalate it to the responsible owner.
 
-## 8. UI/UX and Accessibility Discipline
+## 8. Headless Scope and Consumer Experience
 
-For every user-facing change:
-
-- follow `UI_UX_RULES.md`,
-- use `design-system/tokens/tokens.json` or an approved generated adapter,
-- select one approved app theme,
-- reuse shared components before creating variants,
-- keep application and domain logic outside visual components,
-- define loading, empty, error, offline, and success states where applicable,
-- preserve responsive behavior across narrow, medium, and wide layouts,
-- verify keyboard, focus, contrast, text scaling, touch targets, and reduced motion,
-- support Greek and English content without layout assumptions,
-- record screenshots or equivalent evidence for material visual changes,
-- document every deviation in `docs/governance/EXCEPTIONS.md`.
-
-For dashboards, landing pages, project-status pages, and main web interfaces, also follow `PROJECT_DASHBOARD_GUIDE.md`. Preserve its shared project identity pattern, simple primary navigation, ecosystem return link where applicable, stable footer, copyright information, and visible version/build identification unless an approved project-specific requirement justifies a documented deviation.
-
-Accessibility failures and silent design-system or dashboard-guide deviations are defects.
+This project has no dashboard, website, or visual component system. A future SDK API must document the consumer-facing consent, error, localization, and accessibility implications it creates, but each consumer application owns its visual interface and UI verification. Do not introduce a standalone frontend, theme, dashboard shell, or web-hosting requirement without separately approved scope.
 
 ## 9. Project Commands
 
-Replace all placeholders during project initialization:
+Current commands and explicit non-applicability decisions are:
 
 ```text
-FORMAT_COMMAND=<define>
-LINT_COMMAND=<define>
-TYPECHECK_COMMAND=<define>
-UNIT_TEST_COMMAND=<define>
-INTEGRATION_TEST_COMMAND=<define>
-E2E_TEST_COMMAND=<define>
-ACCESSIBILITY_TEST_COMMAND=<define-or-not-applicable>
-SECURITY_SCAN_COMMAND=<define>
-DEPENDENCY_SCAN_COMMAND=<define>
-BUILD_COMMAND=<define>
+FORMAT_COMMAND=NOT_APPLICABLE_CURRENTLY (no implementation files)
+LINT_COMMAND=NOT_APPLICABLE_CURRENTLY (no implementation files)
+TYPECHECK_COMMAND=NOT_APPLICABLE_CURRENTLY (no typed implementation)
+UNIT_TEST_COMMAND=node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs
+INTEGRATION_TEST_COMMAND=NOT_APPLICABLE_CURRENTLY (no provider integration)
+E2E_TEST_COMMAND=NOT_APPLICABLE (no UI or service)
+ACCESSIBILITY_TEST_COMMAND=NOT_APPLICABLE (headless SDK)
+SECURITY_SCAN_COMMAND=node scripts/validate-foundations.cjs
+DEPENDENCY_SCAN_COMMAND=NOT_APPLICABLE_CURRENTLY (no dependency manifest)
+BUILD_COMMAND=NOT_APPLICABLE_CURRENTLY (no package or runtime artifact)
 ```
 
 Never claim a command passed unless it was actually run successfully, or an approved exception explicitly records why it was not required.
 
-During project initialization, replace every command placeholder above with the
-actual project command or an explicit, owned non-applicability decision. The
-initialization gate blocks development readiness while placeholders remain.
+Reassess each non-applicability decision when SDK implementation begins. The initialization gate blocks development readiness while required owner and security decisions remain unresolved.
 
 ## 10. Repair Limits
 
