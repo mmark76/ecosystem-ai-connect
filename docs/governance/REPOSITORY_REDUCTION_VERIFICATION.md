@@ -12,33 +12,39 @@ Run from a clean checkout of the PR branch:
 
 ```powershell
 git fetch origin --prune
-$base = git rev-parse origin/main
+$historicalBaseline = 'ddc11cfc8cc686652a5bf28eef67153bc19a3044'
+$mainTip = git rev-parse --verify origin/main
+if ($LASTEXITCODE -ne 0) { throw 'BLOCKED: origin/main is unavailable; fetch complete history before verification.' }
 $head = git rev-parse HEAD
-git merge-base --is-ancestor $base $head
+$mergeBase = git merge-base $mainTip $head
+if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($mergeBase)) { throw 'BLOCKED: no merge base is available for origin/main and HEAD; fetch the required history without merging or rebasing.' }
+git merge-base --is-ancestor $mergeBase $head
+if ($LASTEXITCODE -ne 0) { throw 'BLOCKED: resolved merge base is not an ancestor of HEAD.' }
 git status --short
-git rev-parse $base
+git rev-parse $mainTip
+git rev-parse $mergeBase
 git rev-parse $head
 ```
 
-The verifier must report the resolved `$base` and `$head`. `$base` is the verified PR base; `$head` is the actual checked-out revision under review. Do not substitute an earlier subject commit merely because it was the original reduction commit.
+The verifier must report `$historicalBaseline`, `$mainTip`, `$mergeBase`, and `$head`. `$historicalBaseline` is the original reduction baseline and remains historical context only; its object need not be present in a shallow checkout. `$mainTip` is the current moving remote tip. `$mergeBase` is the immutable branch-relative comparison base for this execution, and `$head` is the actual checked-out revision under review. Do not substitute one for another. If Git cannot provide a merge base because the history is missing, stop as `BLOCKED`; do not guess, merge, or rebase.
 
 ## AIC-AC-001 — Headless repository
 
 ```powershell
-git ls-tree -r --name-only $base
+git ls-tree -r --name-only $mergeBase
 git ls-tree -r --name-only $head
-git diff --name-status --find-renames $base $head
-git diff --stat --find-renames $base $head
+git diff --name-status --find-renames $mergeBase $head
+git diff --stat --find-renames $mergeBase $head
 ```
 
-Compare the baseline inventory with the current head, calculate additions, modifications, deletions, and renames from the name-status output, and validate the resulting baseline classifications against [Repository Reduction Audit](REPOSITORY_REDUCTION_AUDIT.md). Confirm that no removed dashboard/static-site entry point, workflow, test, build script, `design-system/` path, or project-owned UI record is tracked at `$head`.
+Compare the merge-base inventory with the current head, calculate additions, modifications, deletions, and renames from the name-status output, and validate the resulting baseline classifications against [Repository Reduction Audit](REPOSITORY_REDUCTION_AUDIT.md). Confirm that no removed dashboard/static-site entry point, workflow, test, build script, `design-system/` path, or project-owned UI record is tracked at `$head`.
 
 The final PR evidence must report the resolved revisions, tracked-file counts, change counts, audit result, and headless-path result. Source removal does not establish that an external published site, GitHub Pages setting, DNS record, or Cloudflare configuration was disabled; no external infrastructure is queried or changed by this procedure.
 
 ## AIC-AC-002 — Foundation integrity
 
 ```powershell
-git diff --exit-code $base $head -- FOUNDATION_VERSIONS foundations/
+git diff --exit-code $mergeBase $head -- FOUNDATION_VERSIONS foundations/
 node scripts/validate-foundations.cjs
 node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs
 ```
