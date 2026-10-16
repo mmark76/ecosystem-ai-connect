@@ -1,28 +1,15 @@
 # Changelog
 
-All notable Integrated Project Template changes are recorded here. `TEMPLATE_VERSION` is the source of truth for the template release; `FOUNDATION_VERSIONS` records the upstream revisions assessed for that release. Project, foundation, and component versions remain independently owned.
-
-## [0.2.0] - 2026-10-08
-
-### Added
-
-- Pinned, sanitized Engineering Standards, Shield, and Infrastructure snapshots from the reviewed DNA revision.
-- Strong Room templates, verification utilities, schemas, capability model, and safety validation for project-safe adoption.
+## Unreleased — 2026-10-15
 
 ### Changed
 
-- Updated the DNA pin to `c6f12b715f3fd8ed84446ded77144e1334ddb752`.
+- Specialized the repository from an integrated project template to the Ecosystem AI Connect headless-SDK foundation.
+- Removed the unused dashboard/static-site implementation and its project-owned validation assets.
+- Added project-specific architecture, security, infrastructure, testing, risk, and traceability records.
 
-## [0.1.0] - 2026-10-07
+### Preserved
 
-### Added
+- Pinned, sanitized Foundation references, provenance, validator, and regression tests.
 
-- Integrated foundation provenance manifest and explicit non-competing authority model.
-- `ENG-*` applicability, exception, verification, and evidence adoption records.
-- Shield adoption boundary that avoids copying private or operational security material.
-- Explicit infrastructure profile and readiness mechanism supporting `NOT_APPLICABLE`, `LOCAL_ONLY`, `SHARED_INFRASTRUCTURE`, and `DEPLOYED_SERVICE`.
-- Integrated initialization, engineering, security, infrastructure, and completion gates.
-
-### Changed
-
-- Reframed the repository from a copy of Ecosystem Framework — The DNA into a consumable Integrated Project Template.
+No OAuth, provider integration, package publication, deployment, or license selection is included in this change.

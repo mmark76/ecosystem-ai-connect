@@ -1,18 +1,7 @@
-# GitHub Copilot instructions
+# Ecosystem AI Connect repository guidance
 
-## Safe merged-branch cleanup
+Keep changes within the approved headless-SDK scope. Do not introduce a dashboard, website, cloud backend, live provider integration, credential store, or package publication without explicit approval.
 
-Perform branch cleanup only when the repository owner explicitly requests it.
+Treat Foundation material under `foundations/` as pinned, sanitized reference material. Preserve provenance and run the Foundation validator before modifying it. Never add credentials, populated configuration, private operational evidence, or token-like values.
 
-Before deleting a branch, verify all of the following:
-
-1. Identify the repository default branch through GitHub metadata. Never delete the default branch, including `main` or `master`.
-2. Never delete a protected branch, release branch, or a branch whose protection or purpose is uncertain.
-3. Verify that the related pull request is merged, or that every commit on the candidate branch is already reachable from the default branch.
-4. Verify that the branch has no commits after the merged pull-request head.
-5. Verify that no open pull request uses the branch and no local checkout or worktree is currently on it.
-6. If any evidence is incomplete, ambiguous, or unavailable, classify the branch as `REVIEW REQUIRED` and do not delete it.
-
-For a verified deletion, delete only the specific merged feature branch requested by the owner. Do not force-push, rewrite history, alter the default branch, or delete tags.
-
-Report the repository, branch, evidence used, and whether the remote branch, local branch, or worktree was removed. Keep unverified and active branches intact.
+For future provider work, preserve explicit user consent, per-user and per-application authorization boundaries, safe token handling, redacted logging, and provider-neutral public contracts. OpenAI is the approved initial direction; additional providers require separately approved work.

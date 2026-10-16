@@ -1,12 +1,5 @@
 # Approved Exceptions
 
-No deviation is valid unless recorded and approved.
+No exceptions are approved.
 
-> **Initialization instruction:** Replace or remove every `EXAMPLE-*` row. An
-> example row is not an approved exception and grants no authority to deviate.
-
-| Exception ID | Rule / Control | Reason | Risk | Compensating control | Owner | Approver | Expiry / Review | Status |
-|---|---|---|---|---|---|---|---|---|
-| EXAMPLE-EXC-001 | Replace with a real exception or remove this row. | Define reason. | Define risk. | Define compensating control. | Unassigned | Unapproved | Not set | NOT PROJECT DATA |
-
-Expired or unapproved critical exceptions block completion.
+`LOCAL_ONLY` and the non-applicability of dashboard, site, and Strong Room runtime requirements are scope decisions recorded in the release scope and infrastructure profile; they are not exceptions to Foundation authority. Future deviations require an owner, approver, risk, compensating control, and review/expiry record.

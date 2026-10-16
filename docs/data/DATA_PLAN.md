@@ -1,37 +1,11 @@
 # Data Plan
 
-## Data Inventory
+## Current state
 
-> **Initialization instruction:** Replace or remove every `EXAMPLE-*` row. It is
-> instructional only and is not approved project data.
+No runtime data is collected, stored, transmitted, or processed by this repository baseline.
 
-| Data ID | Data | Purpose | Source | Owner | Classification | Retention | Deletion | Access |
-|---|---|---|---|---|---|---|---|---|
-| EXAMPLE-DATA-001 | Replace with a real data asset or remove this row. | Define purpose. | Define source. | Unassigned | Unclassified | Define retention. | Define deletion. | Define access. |
+## Planned data boundary
 
-## Data Model
-Link conceptual, logical, and physical models.
+Future implementation may handle authorization transaction state, provider identity metadata, access/refresh tokens if applicable, and minimal local configuration. It must define data classification, necessity, ownership, retention, deletion, export/correction needs, encryption/protection, and secure recovery before implementation. Credentials and tokens must never be committed or stored in a shared central service by default.
 
-## Data Quality
-- Required fields:
-- Validation:
-- Uniqueness:
-- Integrity:
-- Reconciliation:
-
-## Privacy
-- Minimization:
-- Consent or legal basis:
-- User rights:
-- Export:
-- Correction:
-- Deletion:
-- Anonymization:
-
-## Resilience
-- Backup:
-- Encryption:
-- Restore tests:
-- RPO:
-- RTO:
-- Migration strategy:
+Provider request and response data belongs to the authorized consumer workflow and must not be retained by this SDK unless a separately approved purpose, retention, and deletion policy exists.

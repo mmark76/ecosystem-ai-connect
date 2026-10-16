@@ -1,39 +1,19 @@
-# Architecture Decision Records
+# Architecture Decisions
 
-Create one entry per significant decision.
+## ADR-001 — Headless reusable SDK
 
-> **Initialization instruction:** Copy the structure below, replace the
-> `EXAMPLE-*` identifier and every prompt, and then remove the example. The
-> example is not an accepted architecture decision.
+- **Status:** accepted for the repository-foundation baseline.
+- **Decision:** Ecosystem AI Connect is a headless library boundary, not a dashboard, website, or standalone application.
+- **Consequences:** consumer applications retain UI ownership; dashboard files and UI-specific validation are removed.
 
-## ADR Template
+## ADR-002 — Local-only infrastructure profile
 
-### EXAMPLE-ADR-000 — Replace with a Real Decision Title
+- **Status:** accepted for the repository-foundation baseline.
+- **Decision:** select `LOCAL_ONLY`; do not create a hosted backend or deployment configuration.
+- **Consequences:** external provider communication, eventual package distribution, and independent hosting remain distinct future decisions.
 
-- Status: Proposed / Accepted / Superseded / Rejected
-- Date:
-- Owners:
-- Related requirements:
+## ADR-003 — Provider-neutral contract with OpenAI as first intended adapter
 
-#### Context
-What problem or constraint requires a decision?
-
-#### Options
-1.
-2.
-3.
-
-#### Decision
-What was selected?
-
-#### Rationale
-Why?
-
-#### Consequences
-- Positive:
-- Negative:
-- Risks:
-- Follow-up:
-
-#### Review Trigger
-When should this decision be reconsidered?
+- **Status:** accepted direction; implementation deferred.
+- **Decision:** future public contracts must isolate provider-specific behavior. OpenAI is the only intended first adapter.
+- **Consequences:** no OAuth flow, provider SDK, API key handling, or additional provider is introduced by this release.

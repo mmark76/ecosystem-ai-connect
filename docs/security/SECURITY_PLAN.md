@@ -1,44 +1,47 @@
 # Security Plan
 
-## System Risk Profile
-- Selected Shield revision / baseline:
-- Exposure:
-- Criticality:
-- Data sensitivity:
-- Main threat actors:
-- Regulatory context:
+## Status and authority
 
-## Security Owners
-- Product risk owner:
-- Security owner:
-- Incident owner:
-- Data / privacy owner:
+[Ecosystem Security — The Shield](../../foundations/shield/README.md) remains authoritative at the revision in [`FOUNDATION_VERSIONS`](../../FOUNDATION_VERSIONS). This is a project-owned assessment for a planned local SDK; it does not implement or verify authorization, token handling, provider connectivity, hosting, or production controls.
 
-## Required Controls
+`APPLICABLE_NOW`, `APPLICABLE_WHEN_IMPLEMENTED`, `NOT_APPLICABLE`, and `NEEDS_DECISION` describe applicability, separately from the current adoption or verification status. `NEEDS_DECISION` is not an owner assignment. `NOT_YET_AVAILABLE` never represents completed evidence.
 
-> **Initialization instruction:** Replace or remove every `EXAMPLE-*` row. It is
-> not an approved control and cannot satisfy a security requirement.
+## Shield normative requirement assessment
 
-| Control ID | Control | Requirement ID | Owner | Verification | Evidence | Status |
+The [Strong Room requirements](../../foundations/shield/standards/private-app-security-baseline/requirements.md) define the actual normative IDs `SR-01` through `SR-11` for a private hosted application. The assessment below does not repurpose them as generic SDK controls.
+
+| Source ID | Applicability and rationale | Required project decision / control | Owner | Current status | Verification and evidence | Re-evaluation trigger |
 |---|---|---|---|---|---|---|
-| EXAMPLE-SEC-001 | Replace with a real control or remove this row. | Replace with an approved requirement ID. | Unassigned | Define verification. | Define evidence. | NOT PROJECT DATA |
+| SR-01 — Access application and default deny | NOT_APPLICABLE | Exact control requires a protected hostname, Access application, and private hosted paths; none exists in `LOCAL_ONLY`. | NEEDS_DECISION — security/infrastructure owner | NOT_APPLICABLE_CURRENT_SCOPE | Review [`INFRASTRUCTURE_PROFILE.md`](../infrastructure/INFRASTRUCTURE_PROFILE.md); runtime evidence: NOT_YET_AVAILABLE. | `SHARED_INFRASTRUCTURE` or `DEPLOYED_SERVICE` proposal. |
+| SR-02 — Strong authentication and MFA | NOT_APPLICABLE | Exact Access/MFA control applies to a hosted private application. Future user authorization is assessed through Shield `iam`, not treated as implemented Access. | NEEDS_DECISION — security owner | NOT_APPLICABLE_CURRENT_SCOPE | Authorization design and provider review: NOT_YET_AVAILABLE. | OAuth/provider authorization or hosted identity design. |
+| SR-03 — Gateway JWT validation | NOT_APPLICABLE | Exact cloudflared/trusted-gateway control requires a hosted origin and Access JWT boundary. | NEEDS_DECISION — security/infrastructure owner | NOT_APPLICABLE_CURRENT_SCOPE | Infrastructure design review: NOT_YET_AVAILABLE. | Hosted gateway or public ingress. |
+| SR-04 — Loopback publication and origin isolation | NOT_APPLICABLE | Exact publication control requires a hosted/private origin; this repository introduces no listener, container, or ingress. | NEEDS_DECISION — infrastructure owner | NOT_APPLICABLE_CURRENT_SCOPE | Infrastructure profile review; evidence: NOT_YET_AVAILABLE. | Hosted service, listener, container, or proxy. |
+| SR-05 — Container hardening | NOT_APPLICABLE | Exact control requires a containerized private application; no container runtime is approved. | NEEDS_DECISION — infrastructure owner | NOT_APPLICABLE_CURRENT_SCOPE | Container design and runtime inspection: NOT_YET_AVAILABLE. | Container or hosted-runtime proposal. |
+| SR-06 — Immutable reviewed release artifact | NOT_APPLICABLE | Exact Strong Room served-artifact control is outside the current local foundation; supply-chain principles are separately mapped to Shield capability `software-supply-chain-security`. | NEEDS_DECISION — technical/security owner | NOT_APPLICABLE_CURRENT_SCOPE | Release-artifact design and provenance evidence: NOT_YET_AVAILABLE. | Package, release artifact, or hosted deployment. |
+| SR-07 — Verified rollback | NOT_APPLICABLE | Exact Strong Room release/rollback control requires a deployed or published release boundary not selected for this scope. | NEEDS_DECISION — release/operations owner | NOT_APPLICABLE_CURRENT_SCOPE | Release and recovery plan: NOT_YET_AVAILABLE. | Package publication, deployment, or release approval. |
+| SR-08 — Private service verification | NOT_APPLICABLE | Exact authenticated-service, anonymous-denial, and direct-origin tests require a hosted private application. | NEEDS_DECISION — security/infrastructure owner | NOT_APPLICABLE_CURRENT_SCOPE | Service test evidence: NOT_YET_AVAILABLE. | Hosted service or ingress. |
+| SR-09 — Access-owned logout | NOT_APPLICABLE | Exact Access logout delegation requires Access-owned authentication, which is not selected. | NEEDS_DECISION — security owner | NOT_APPLICABLE_CURRENT_SCOPE | Authorization/logout design: NOT_YET_AVAILABLE. | Access integration or approved authentication architecture. |
+| SR-10 — Attributable sanitized evidence | APPLICABLE_NOW | Current evidence must remain dated, scoped, attributable, and free of credentials or authentication material; future SDK work needs secret-safe evidence handling. | NEEDS_DECISION — security owner | PARTIAL; NOT_YET_VERIFIED | Review repository evidence and add project secret scanning with implementation; current security-control evidence: NOT_YET_AVAILABLE. | Any credential, token, test fixture, logging, or evidence change. |
+| SR-11 — Threat boundaries, risks, baseline, exceptions | APPLICABLE_NOW | Current scope requires a threat model, Shield revision, visible residual risks, and no invisible exceptions; owners remain unresolved. | NEEDS_DECISION — security and technical owners | PARTIAL; NOT_YET_VERIFIED | [`THREAT_MODEL.md`](THREAT_MODEL.md), [`FOUNDATION_VERSIONS`](../../FOUNDATION_VERSIONS), and [`EXCEPTIONS.md`](../governance/EXCEPTIONS.md); owner/exception evidence: NOT_YET_AVAILABLE. | Architecture, risk, exception, provider, or infrastructure change. |
 
-For each applicable Shield requirement, retain its authoritative requirement/control ID, source revision, project control mapping, verification, sanitized evidence location, and status. `NOT_APPLICABLE` and exceptions require rationale, owner, approval, and review/expiry details.
+## Shield capability traceability
 
-## Areas to Address
-- Identity and access
-- Authentication
-- Authorization
-- Sessions and tokens
-- Input and output handling
-- Browser security
-- API security
-- Data protection
-- Secrets and keys
-- Infrastructure and network
-- Dependencies and supply chain
-- Logging and detection
-- Incident response
-- Backup and recovery
-- Privacy
-- Vulnerability management
+The pinned [capability model](../../foundations/shield/model/security-capabilities.json) supplies these real capability identifiers. They are not asserted to be implemented controls or substitute normative IDs.
+
+| Capability ID | Applicability and project concern | Required project decision / control | Owner | Current status | Verification and evidence | Re-evaluation trigger |
+|---|---|---|---|---|---|---|
+| `threat-modeling` | APPLICABLE_NOW — assets, trust boundaries, residual risks, and change review. | Keep the planned SDK threat model current and assign owners before implementation. | NEEDS_DECISION — security/technical owners | PARTIAL; NOT_YET_VERIFIED | [`THREAT_MODEL.md`](THREAT_MODEL.md); approved owner/review evidence: NOT_YET_AVAILABLE. | Material design, dependency, or risk change. |
+| `security-exceptions` | APPLICABLE_NOW — no invisible permanent bypasses. | Record any future security exception with approver, risk, compensating control, expiry, and review. | NEEDS_DECISION — security owner | BASELINE_RECORDED; NOT_YET_VERIFIED | [`EXCEPTIONS.md`](../governance/EXCEPTIONS.md); no approved exception evidence beyond the record. | Proposed deviation from Shield or Engineering requirements. |
+| `evidence-assurance` | APPLICABLE_NOW — bounded, attributable evidence for claims. | Preserve source, revision, method, result, limitation, and reviewer evidence. | NEEDS_DECISION — security/release owners | PARTIAL; NOT_YET_VERIFIED | [`REPOSITORY_REDUCTION_VERIFICATION.md`](../governance/REPOSITORY_REDUCTION_VERIFICATION.md); SDK security evidence: NOT_YET_AVAILABLE. | Any security claim, release, or implementation evidence. |
+| `iam` | APPLICABLE_WHEN_IMPLEMENTED — authorization, consent, user/account isolation, scope, revocation, and MFA/risk decisions. | Approve authorization architecture, consent, identity binding, scopes, and revocation behavior. | NEEDS_DECISION — security/product/technical owners | PLANNED; NOT_YET_AVAILABLE | Authorization design and integration tests: NOT_YET_AVAILABLE. | OAuth or provider authorization proposal. |
+| `secrets-management` | APPLICABLE_WHEN_IMPLEMENTED — credentials, access/refresh tokens, protected storage, rotation, expiry, revocation, and leak detection. | Select protected local storage and lifecycle; prohibit secrets in source, logs, fixtures, and diagnostics. | NEEDS_DECISION — security/technical owners | PLANNED; NOT_YET_AVAILABLE | Storage design, secret scan, and lifecycle tests: NOT_YET_AVAILABLE. | Token, credential, key, or environment configuration proposal. |
+| `application-security` | APPLICABLE_WHEN_IMPLEMENTED — redirect integrity, input/configuration validation, safe errors, authorization, and abuse controls. | Define PKCE/state/nonce/redirect validation where required and redacted errors/diagnostics. | NEEDS_DECISION — security/technical owners | PLANNED; NOT_YET_AVAILABLE | Threat-driven unit/integration/security tests: NOT_YET_AVAILABLE. | SDK API, callback, or provider boundary. |
+| `data-security` | APPLICABLE_WHEN_IMPLEMENTED — token/consent/provider data classification, isolation, retention, deletion, and sensitive-log exclusion. | Approve data classification, ownership, retention, deletion, and local access boundaries. | NEEDS_DECISION — data/privacy/security owners | PLANNED; NOT_YET_AVAILABLE | Data inventory, design review, and lifecycle tests: NOT_YET_AVAILABLE. | Persistent data or provider-data proposal. |
+| `third-party-security` | APPLICABLE_WHEN_IMPLEMENTED — provider account, data access, trust level, risk review, and reassessment. | Assess and approve any AI provider before connectivity. | NEEDS_DECISION — product/security/technical owners | PLANNED; NOT_YET_AVAILABLE | Provider assessment and approval evidence: NOT_YET_AVAILABLE. | Provider selection or integration. |
+| `software-supply-chain-security` | APPLICABLE_WHEN_IMPLEMENTED — package provenance, dependency integrity, artifact traceability, and vulnerabilities. | Inventory, justify, pin, scan, and assign maintenance for runtime dependencies. | NEEDS_DECISION — technical/security owners | PARTIAL; runtime evidence NOT_YET_AVAILABLE | [`FOUNDATION_VERSIONS`](../../FOUNDATION_VERSIONS) records Foundation pins; runtime dependency evidence: NOT_YET_AVAILABLE. | Any dependency, build, or release artifact. |
+| `logging-monitoring-detection` | APPLICABLE_WHEN_IMPLEMENTED — redacted security diagnostics and operated-runtime detection, without implying hosted monitoring now. | Define safe diagnostic fields, retention, ownership, and incident signals proportionate to selected runtime. | NEEDS_DECISION — security/operations/technical owners | PLANNED; NOT_YET_AVAILABLE | Logging design and redaction tests: NOT_YET_AVAILABLE. | Runtime diagnostics or operated service. |
+| `incident-response` and `security-resilience-recovery` | NEEDS_DECISION — recovery, incident, and revocation requirements depend on supported platforms and selected runtime. | Approve incident, recovery, credential-revocation, and support ownership before live connectivity. | NEEDS_DECISION — security/operations/release owners | NOT_YET_AVAILABLE | Incident/recovery plan and exercises: NOT_YET_AVAILABLE. | Supported-platform, release, or live-connectivity decision. |
+
+## Owner decisions required
+
+Named security, privacy, incident, operations, technical, product, and release owners; supported platforms; selected credential storage mechanism; selected authorization flow; token lifecycle; provider registration; data classification; incident/revocation process; and any infrastructure profile change remain `NEEDS_DECISION`.

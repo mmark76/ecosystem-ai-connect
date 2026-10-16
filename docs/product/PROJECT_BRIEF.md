@@ -1,45 +1,25 @@
-# Project Brief
+# Ecosystem AI Connect — Project Brief
 
 ## Identity
-- Project name:
-- Owner:
-- Product owner:
-- Technical owner:
-- Security owner:
-- Operations owner:
-- Version:
-- Integrated template version:
-- Adopted foundation revisions (or project update record):
 
-## Problem
-What verified problem is being solved?
+- **Purpose:** a reusable, headless, local-first SDK boundary for authorized AI-provider connectivity in compatible Markellos Ecosystem applications.
+- **Initial provider direction:** OpenAI, subject to a separately approved implementation and provider requirements.
+- **Initial intended consumer:** AI Training Lab.
+- **Additional intended consumers:** StudyApp, Organize Your PC, and other compatible applications after their own approval.
+- **Project status:** foundation and governance baseline; no SDK API, OAuth flow, provider adapter, or live integration is implemented.
+- **Owners:** repository, product, technical, security, privacy, and release owners require recorded owner assignment before development readiness.
 
-## Users
-Who are the primary and secondary users?
+## Problem and value
 
-## Value
-What measurable value will the application produce?
-
-## Success Metrics
-- Metric:
-- Baseline:
-- Target:
-- Measurement method:
+Compatible local applications need a reusable way to integrate authorized AI use without each application inventing incompatible provider, consent, credential, and authorization behavior. The SDK will provide a controlled integration boundary; it does not centralize credentials or operate a shared backend.
 
 ## Constraints
-- Time:
-- Budget:
-- Technology:
-- Legal:
-- Operational:
-- Skills:
 
-## Criticality
-- Business criticality:
-- Safety impact:
-- Data sensitivity:
-- Maximum tolerable outage:
-- Maximum tolerable data loss:
+- `ecosystem-core` is out of scope and remains independent.
+- No dashboard, dedicated frontend, mandatory website, cloud backend, payment platform, or centralized credential store is in scope.
+- No provider request, OAuth flow, account eligibility decision, or claim about ChatGPT-plan access is implemented or verified.
+- Future implementations must preserve local process and filesystem trust boundaries and consumer-application isolation.
 
-## Build / Buy Decision
-Why is new development justified?
+## Criticality and data
+
+The planned scope handles authentication material and authorization state, so it is security-sensitive. Final data classification, owners, availability targets, and recovery targets require owner approval before implementation.

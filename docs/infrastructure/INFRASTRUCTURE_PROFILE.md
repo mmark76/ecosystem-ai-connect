@@ -1,24 +1,9 @@
 # Infrastructure Profile
 
-Select one profile before development readiness. Infrastructure is optional; uncertainty is not `NOT_APPLICABLE`.
+- **Selected profile:** `LOCAL_ONLY`
+- **Rationale:** the current repository scope is a local, headless SDK foundation and does not introduce a hosted-service implementation, deployment target, public ingress, database, or central credential store.
+- **External dependency boundary:** a future adapter may communicate with an authorized provider such as OpenAI. That is not a deployment of Ecosystem AI Connect.
+- **Package publication:** a future release/distribution concern, not runtime hosting.
+- **Strong Room:** retained pinned Shield reference; `NOT_APPLICABLE` to the current local-only runtime because there is no private HTTP workload, container deployment, tunnel, or origin to protect.
 
-- `NOT_APPLICABLE` — no runtime or deployment infrastructure is required. State why and name the owner.
-- `LOCAL_ONLY` — used only in approved local/developer environments.
-- `SHARED_INFRASTRUCTURE` — adopts a shared, owner-managed ecosystem mechanism.
-- `DEPLOYED_SERVICE` — this project owns or operates a deployed service integration.
-
-## Record
-
-- Selected profile:
-- Rationale and scope:
-- Infrastructure owner:
-- Selected upstream Infrastructure revision/pattern:
-- Environments and separation:
-- Networking, ingress, and trust-boundary decision:
-- Deployment and rollback decision:
-- Backup/recovery applicability:
-- Health/observability evidence location:
-- Security dependencies and Shield requirements:
-- Exceptions, risks, and review date:
-
-This record does not replace Infrastructure-owned architecture or project-owned deployment configuration.
+Any selection of `SHARED_INFRASTRUCTURE` or `DEPLOYED_SERVICE` requires a separate approved architecture, security, deployment, rollback, ownership, and recovery record. This repository does not configure or change cloud infrastructure, DNS, GitHub Pages, or production resources; their external state has not been verified.

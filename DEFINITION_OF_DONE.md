@@ -24,21 +24,9 @@ This is a DNA completion method, not an independent standards catalogue. Applica
 - The security gate passes and no unresolved or unapproved blocking security exception remains.
 - Applicable non-security data-evolution evidence for `ENG-DATA-001` is complete.
 
-## UI/UX and Accessibility
+## Consumer Experience and Accessibility
 
-For every user-facing change:
-
-- `UI_UX_RULES.md` and the approved app theme are followed.
-- `PROJECT_DASHBOARD_GUIDE.md` is followed for dashboards, landing pages, project-status pages, and main web interfaces.
-- Applicable dashboard shells preserve the required project identity, simple navigation, ecosystem return path, Header/Footer logic, copyright information, and visible version/build identification.
-- Semantic design tokens are used; no arbitrary ecosystem-wide values were introduced.
-- Existing shared components are reused where appropriate.
-- Required loading, empty, error, offline, and success states are handled.
-- Narrow, medium, and wide layouts are verified where applicable.
-- Keyboard operation, focus visibility and order, contrast, text scaling, touch targets, and reduced motion are verified.
-- Greek and English content works where supported.
-- Material visual changes have screenshots, recordings, or equivalent evidence.
-- Any deviation is approved and recorded in `docs/governance/EXCEPTIONS.md`.
+The current project is headless and has no standalone UI, site, or accessibility surface. When an SDK contract affects a consumer's consent or error experience, document the interaction and accessibility implications; the consumer application owns visual implementation and verification.
 
 ## Quality
 

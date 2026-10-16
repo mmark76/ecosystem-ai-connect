@@ -1,24 +1,25 @@
-# Release Scope
+# Release Scope — Template Reduction and Project Specialization
 
-## Release identity
-
-- Release name/version:
-- Owner:
-- Approval date:
+- **Scope ID:** `AIC-SCOPE-001`
+- **Release:** repository-foundation baseline
+- **Approval:** the repository-reduction task is authorized; no production, provider, package-publication, or release-completion approval is implied.
 
 ## In scope
 
-| Scope ID | Outcome | Priority | Owner | Approval status |
-|---|---|---|---|---|
-| EXAMPLE-SCOPE-001 | Replace or remove before approval. | — | Unassigned | NOT PROJECT DATA |
+| Outcome | Status |
+|---|---|
+| Remove unused project-owned dashboard and static-site implementation after dependency verification. | IN SCOPE |
+| Establish accurate headless-SDK architecture, security, infrastructure, testing, and governance records. | IN SCOPE |
+| Preserve pinned Foundation provenance and applicable controls. | IN SCOPE |
+| Record open licensing and future-authentication decisions without deciding them. | IN SCOPE |
 
 ## Out of scope
 
-Record deferred or explicitly excluded work here. New scope requires controlled approval before implementation.
+- OAuth or Sign in with ChatGPT implementation.
+- OpenAI API calls, provider adapters, credential or token storage, package publication, cloud hosting, DNS, and deployment.
+- Changes to `ecosystem-core`, AI Training Lab, StudyApp, Organize Your PC, or any other repository.
+- Selecting a software license or granting reuse permissions.
 
 ## Foundation impact
 
-- Applicable `ENG-*` requirements record:
-- Applicable Shield requirements/baseline record:
-- Infrastructure profile:
-- Material architecture, security, or infrastructure change review required: Yes / No
+Applicable Engineering Standards and Shield requirements are mapped in the adoption, security, and threat-model records. The infrastructure profile is `LOCAL_ONLY`; Strong Room and deployment patterns remain retained reference material but are not selected runtime architecture.

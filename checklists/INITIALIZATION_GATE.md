@@ -23,8 +23,7 @@ written reason and owner. Any unresolved mandatory item results in `REWORK` or
 - [ ] Project objectives, requirements, acceptance criteria, and traceability records use real approved IDs.
 - [ ] Applicable `ENG-*` requirements, non-applicable requirements with rationale, and permitted exceptions are recorded in `engineering/requirements/ENG_ADOPTION_MATRIX.md`.
 - [ ] Applicable Shield requirements, selected baseline/revision, and project-specific security evidence locations are recorded without copying private Shield material.
-- [ ] The approved app theme is recorded for user-facing projects, or non-applicability is documented.
-- [ ] Any dashboard, landing page, project-status page, or main web interface is explicitly governed by `PROJECT_DASHBOARD_GUIDE.md`, including Header → Main Content → Footer, project identity, simple navigation, ecosystem return path where applicable, footer copyright, and visible version/build identification.
+- [ ] User-interface requirements are recorded for consumer integrations, or non-applicability is documented for this headless SDK.
 
 ## Template Safety
 
@@ -53,15 +52,15 @@ written reason and owner. Any unresolved mandatory item results in `REWORK` or
 
 - [ ] Project-specific content is initialized in the product brief, release scope, objectives, acceptance criteria, and traceability matrix.
 - [ ] System architecture, architecture decisions, data plan, security plan, threat model, test strategy, operations/recovery plan, risk register, and exceptions register are initialized or explicitly marked not applicable with reasons.
-- [ ] Required UI/UX, accessibility, localization, and dashboard decisions are recorded for user-facing work.
+- [ ] Consumer-interface and accessibility responsibilities are recorded, or non-applicability is documented for this headless SDK.
 - [ ] `docs/infrastructure/INFRASTRUCTURE_PROFILE.md` selects `NOT_APPLICABLE`, `LOCAL_ONLY`, `SHARED_INFRASTRUCTURE`, or `DEPLOYED_SERVICE`; selected deployment and recovery decisions are recorded when applicable.
 - [ ] Initialization evidence identifies the reviewer, date, adopted template/foundation revisions, unresolved items, and final decision.
 
 ## Decision
 
-- Reviewer:
-- Date:
-- Adopted template/foundation revisions:
-- Non-applicable items and reasons:
-- Unresolved items:
-- Decision: `PASS` / `REWORK` / `BLOCKED`
+- Reviewer: repository-reduction verification; owner approval pending.
+- Date: 2026-10-15
+- Adopted template/foundation revisions: `INTEGRATED_TEMPLATE_VERSION=0.2.0`; pins in `FOUNDATION_VERSIONS`.
+- Non-applicable items and reasons: standalone UI/site, dashboard review, deployment, and runtime build are not applicable to the current headless `LOCAL_ONLY` baseline.
+- Unresolved items: named owners; data classification; supported platforms; authorization/provider registration; protected token storage and lifecycle; license selection.
+- Decision: `REWORK` — this controlled reduction is verified, but development readiness cannot pass until the listed owner decisions are approved.
