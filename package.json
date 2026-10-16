@@ -1,0 +1,28 @@
+{
+  "name": "@markellos/ecosystem-ai-connect",
+  "version": "0.1.0",
+  "description": "Headless, local-first OpenAI connector for approved Markellos Ecosystem consumers.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "test:foundation": "node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs",
+    "test:sdk": "npm run build && node --test tests/sdk/*.test.cjs",
+    "test": "npm run test:foundation && npm run test:sdk",
+    "validate:foundations": "node scripts/validate-foundations.cjs",
+    "audit:dependencies": "npm audit --omit=dev"
+  },
+  "dependencies": {
+    "@napi-rs/keyring": "2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "5.9.3"
+  }
+}

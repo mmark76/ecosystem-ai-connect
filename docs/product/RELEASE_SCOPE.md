@@ -25,3 +25,22 @@
 ## Foundation impact
 
 Applicable Engineering Standards and Shield requirements are mapped in the adoption, security, and threat-model records. The infrastructure profile is `LOCAL_ONLY`; Strong Room and deployment patterns remain retained reference material but are not selected runtime architecture.
+
+## AIC-SCOPE-002 — OpenAI connector v1
+
+- **Release owner:** `mmark76`
+- **Approval:** [`AIC-CCR-002`](../governance/GOVERNANCE_DECISIONS.md#aic-ccr-002)
+- **Target:** local Node.js 22+ SDK implementation for Windows, macOS, and Linux; no package publication.
+
+### In scope
+
+- A TypeScript public connector that scopes a user-owned OpenAI project API key to one user and consumer application.
+- Native OS credential-store integration with no plaintext or plain-file fallback.
+- Text-only, non-streaming OpenAI Responses API requests with `store: false`, bounded errors, timeout/cancellation support, and offline unit tests.
+- Dependency lockfile, dependency audit, documentation, threat/risk records, and traceability for this implementation.
+
+### Out of scope
+
+- OAuth, callback listeners, browser/UI consent, ChatGPT account or plan eligibility, and OpenAI administrative keys.
+- Tools, files, images, audio, streaming, background requests, conversation history, provider-side key revocation, analytics, or prompt/response persistence.
+- A live OpenAI API key, OpenAI account/billing setup, production traffic, package publication, hosted infrastructure, DNS, or changes to consumer repositories.
