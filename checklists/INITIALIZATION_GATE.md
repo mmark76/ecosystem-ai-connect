@@ -58,10 +58,10 @@ written reason and owner. Any unresolved mandatory item results in `REWORK` or
 
 ## Decision
 
-- Reviewer: repository owner; governance decision recorded.
+- Reviewer: GitHub account `mmark76` (repository owner); governance decision recorded.
 - Date: 2026-10-16
 - Adopted template/foundation revisions: `INTEGRATED_TEMPLATE_VERSION=0.2.0`; pins in `FOUNDATION_VERSIONS`.
 - Non-applicable items and reasons: standalone UI/site, dashboard review, deployment, and runtime build are not applicable to the current headless `LOCAL_ONLY` baseline.
-- Approved baseline: repository owner is technical, security, privacy/data, and incident/operations owner; supported platforms are Windows, macOS, and Linux; no provider or connectivity is approved; future authorization is user-authorized OAuth 2.0 Authorization Code with PKCE where supported; native OS secure storage only; no prompt, response, or analytics retention by default; Apache-2.0 is selected.
-- Unresolved items: repository, product, and release ownership; data classification and retention details for a selected provider; supported platform-version policy; provider selection/registration; implementation-specific token lifecycle; incident/revocation process; and implementation evidence.
+- Approved baseline: GitHub account `mmark76` is technical, security, privacy/data, and incident/operations owner; supported platforms are Windows, macOS, and Linux; no provider or connectivity is approved; future authorization is user-authorized OAuth 2.0 Authorization Code with PKCE where supported, with a required recorded security exception and approved alternative flow if PKCE is unavailable; native OS secure storage only; no prompt, response, or analytics retention by default; Apache-2.0 is selected.
+- Unresolved items: product and release ownership; data classification and retention details for a selected provider; supported platform-version policy; provider selection/registration; implementation-specific token lifecycle; incident/revocation process; and implementation evidence.
 - Decision: `REWORK` — this governance baseline is recorded, but development readiness cannot pass until the remaining decisions and implementation-specific evidence are approved.

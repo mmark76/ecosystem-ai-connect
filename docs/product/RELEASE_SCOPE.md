@@ -20,7 +20,7 @@
 - OAuth or Sign in with ChatGPT implementation.
 - OpenAI API calls, provider adapters, credential or token storage, package publication, cloud hosting, DNS, and deployment.
 - Changes to `ecosystem-core`, AI Training Lab, StudyApp, Organize Your PC, or any other repository.
-- Selecting a software license or granting reuse permissions.
+- Selecting a software license or granting reuse permissions under the original reduction scope. The later, separately traced `AIC-CCR-001` decision selects Apache-2.0 only; it does not approve package publication or grant any additional operational authorization.
 
 ## Foundation impact
 

@@ -75,6 +75,12 @@ Run the repository Markdown relative-link assertion, stale-reference assertion o
 
 The final PR evidence must report the exact assertion commands and outcomes, including checks that the headless checklist classifications require scope-based justification, accountable ownership, and a re-evaluation trigger, and that deployment records distinguish repository implementation from unverified external infrastructure state.
 
+## AIC-AC-004 — Governance-baseline traceability
+
+For a reviewed head containing `AIC-CCR-001`, verify that the named accountable identity, provider non-selection, authorization exception boundary, data/storage baseline, licensing decision, and remaining `NEEDS_DECISION` items agree across the governance decision, product brief, security plan, initialization gate, objectives, acceptance criteria, and traceability matrix. Run the Markdown relative-link assertion and a stale-claim assertion for the superseded provider direction.
+
+This procedure can establish documentation consistency only. `AIC-AC-004` remains `BASELINE_RECORDED; NOT_YET_VERIFIED` until a dated review record against the applicable PR head captures those command outcomes. It does not authorize provider selection, OAuth implementation, package publication, or a release.
+
 ## Final checkout integrity
 
 After every remaining assertion completes, run the guard once more and confirm that the checked-out revision is still the resolved `$head`:
