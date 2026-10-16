@@ -12,4 +12,4 @@
 
 ## Future implementation evidence
 
-Before live connectivity, add tests for authorization state and PKCE validation where applicable, redirect/callback validation, token lifecycle and revocation, per-user/per-application isolation, provider adapter contracts, mocked provider errors, safe logging, configuration validation, and dependency/security scanning. Do not add artificial tests before an SDK contract exists.
+Before live connectivity, add tests for authorization state and PKCE validation for every Authorization Code flow, redirect/callback validation, token lifecycle and revocation, per-user/per-application isolation, provider adapter contracts, mocked provider errors, safe logging, configuration validation, and dependency/security scanning. A non-PKCE alternative requires an approved security exception and dedicated compensating-control tests. Do not add artificial tests before an SDK contract exists.

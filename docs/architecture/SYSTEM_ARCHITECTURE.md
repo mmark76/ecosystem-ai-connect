@@ -10,8 +10,8 @@ No runtime SDK modules or provider adapters exist yet. This release establishes 
 |---|---|---|
 | Consumer application | UI, local process, user consent, application authorization, and its own data lifecycle. | Consumer-owned; not implemented here. |
 | SDK public contract | Stable provider-neutral interfaces, error model, configuration contract, and consumer isolation rules. | Planned. |
-| Provider adapter | Provider-specific authorization and request protocol behind the SDK contract. | Planned; OpenAI only is the approved initial direction. |
-| Local secure storage integration | OS-appropriate storage boundary selected by each consumer/platform; no central service or shared credential store. | Planned; owner decision required. |
+| Provider adapter | Provider-specific authorization and request protocol behind the SDK contract. | Planned; no provider is selected or approved. |
+| Local secure storage integration | Native OS secure storage only: Windows Credential Manager/DPAPI, macOS Keychain, or Linux Secret Service; no central service, shared credential store, plaintext storage, or plain-file fallback. | Planned; implementation and platform-version validation required. |
 
 Dependencies flow from consumer application to SDK contract to provider adapter. Provider-specific types, credentials, and transport behavior must not leak into consumer domain code. A future adapter may call an external provider, but the SDK does not host an independent service.
 

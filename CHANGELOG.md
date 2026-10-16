@@ -12,4 +12,4 @@
 
 - Pinned, sanitized Foundation references, provenance, validator, and regression tests.
 
-No OAuth, provider integration, package publication, deployment, or license selection is included in this change.
+No OAuth, provider integration, package publication, or deployment is included in this change. Apache-2.0 is selected as the repository license; that decision does not authorize package publication or a release.

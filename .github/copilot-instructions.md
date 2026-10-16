@@ -4,4 +4,4 @@ Keep changes within the approved headless-SDK scope. Do not introduce a dashboar
 
 Treat Foundation material under `foundations/` as pinned, sanitized reference material. Preserve provenance and run the Foundation validator before modifying it. Never add credentials, populated configuration, private operational evidence, or token-like values.
 
-For future provider work, preserve explicit user consent, per-user and per-application authorization boundaries, safe token handling, redacted logging, and provider-neutral public contracts. OpenAI is the approved initial direction; additional providers require separately approved work.
+For future provider work, preserve explicit user consent, per-user and per-application authorization boundaries, safe token handling, redacted logging, and provider-neutral public contracts. No provider is selected or approved; any provider selection and connectivity work require separate approval.
