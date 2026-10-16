@@ -466,16 +466,17 @@ This project has no dashboard, website, or visual component system. A future SDK
 Current commands and explicit non-applicability decisions are:
 
 ```text
-FORMAT_COMMAND=NOT_APPLICABLE_CURRENTLY (no implementation files)
-LINT_COMMAND=NOT_APPLICABLE_CURRENTLY (no implementation files)
-TYPECHECK_COMMAND=NOT_APPLICABLE_CURRENTLY (no typed implementation)
+FORMAT_COMMAND=NOT_APPLICABLE_CURRENTLY (no formatter is approved)
+LINT_COMMAND=NOT_APPLICABLE_CURRENTLY (no linter is approved)
+TYPECHECK_COMMAND=npm run build
 UNIT_TEST_COMMAND=node --test tests/foundations.test.cjs foundations/shield/tests/*.test.cjs
-INTEGRATION_TEST_COMMAND=NOT_APPLICABLE_CURRENTLY (no provider integration)
+SDK_UNIT_TEST_COMMAND=npm run test:sdk
+INTEGRATION_TEST_COMMAND=NOT_APPLICABLE_CURRENTLY (no live provider credential is authorized)
 E2E_TEST_COMMAND=NOT_APPLICABLE (no UI or service)
 ACCESSIBILITY_TEST_COMMAND=NOT_APPLICABLE (headless SDK)
 SECURITY_SCAN_COMMAND=node scripts/validate-foundations.cjs
-DEPENDENCY_SCAN_COMMAND=NOT_APPLICABLE_CURRENTLY (no dependency manifest)
-BUILD_COMMAND=NOT_APPLICABLE_CURRENTLY (no package or runtime artifact)
+DEPENDENCY_SCAN_COMMAND=npm run audit:dependencies
+BUILD_COMMAND=npm run build
 ```
 
 Never claim a command passed unless it was actually run successfully, or an approved exception explicitly records why it was not required.

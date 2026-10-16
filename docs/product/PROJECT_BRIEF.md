@@ -3,11 +3,11 @@
 ## Identity
 
 - **Purpose:** a reusable, headless, local-first SDK boundary for authorized AI-provider connectivity in compatible Markellos Ecosystem applications.
-- **Provider direction:** no provider is selected or approved for connectivity. A future selection requires separate provider, security, and implementation approval.
+- **Provider direction:** OpenAI is the selected first provider for the bounded connector v1. No other provider is approved.
 - **Initial intended consumer:** AI Training Lab.
 - **Additional intended consumers:** StudyApp, Organize Your PC, and other compatible applications after their own approval.
-- **Project status:** foundation and governance baseline; no SDK API, OAuth flow, provider adapter, or live integration is implemented.
-- **Assigned owners:** GitHub account `mmark76` (repository owner) is the technical, security, privacy/data, and incident/operations owner. Product and release ownership remain `NEEDS_DECISION` before development readiness.
+- **Project status:** local OpenAI connector v1 implementation with no live credential, provider request, OAuth flow, or production integration verified.
+- **Assigned owners:** GitHub account `mmark76` (repository owner) is the product, release, technical, security, privacy/data, and incident/operations owner.
 
 ## Problem and value
 
@@ -17,9 +17,9 @@ Compatible local applications need a reusable way to integrate authorized AI use
 
 - `ecosystem-core` is out of scope and remains independent.
 - No dashboard, dedicated frontend, mandatory website, cloud backend, payment platform, or centralized credential store is in scope.
-- No provider request, OAuth flow, account eligibility decision, or claim about ChatGPT-plan access is implemented or verified.
+- The bounded v1 supports text requests to the OpenAI Responses API only. OAuth, account eligibility, tools, files, streaming, background mode, and any other provider are out of scope.
 - Future implementations must preserve local process and filesystem trust boundaries and consumer-application isolation.
 
 ## Criticality and data
 
-The planned scope handles authentication material and authorization state, so it is security-sensitive. The owner-approved baseline is: no provider connectivity now; a future user-authorized OAuth 2.0 Authorization Code flow with PKCE where supported; no Authorization Code flow without PKCE unless `mmark76` approves a recorded security exception and alternative flow; native OS secure storage only; no prompt, response, or analytics retention by default; and redacted diagnostics. Provider selection, platform-version policy, availability targets, and recovery targets still require implementation-specific approval.
+The scope handles an OpenAI project API key and request content, so it is security-sensitive. The owner-approved v1 baseline is: a user-owned non-administrative API key scoped to the user and consumer application; native OS secure storage only; OpenAI Responses requests with `store: false`; no prompt, response, or analytics retention by this SDK; and redacted diagnostics. OAuth/PKCE remains the required pattern for any future OAuth-capable integration, while the OpenAI API-key flow is recorded in `AIC-CCR-002`. Platform-version policy, provider account/billing, availability targets, recovery targets, and live verification still require approval.
