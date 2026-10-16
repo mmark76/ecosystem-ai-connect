@@ -93,4 +93,4 @@ The earlier execution against `6d000d81eb1eee0dfc9e3654cad5b388b6f75b4c` compare
 
 ## Gate boundary
 
-This verification procedure does not change the acceptance-criteria status without a successful execution against the reviewed head, and it is not product-release approval. The Initialization Gate remains `REWORK` until named owners, supported platforms, authorization/provider registration, protected token storage/lifecycle, data classification, and license selection are formally addressed.
+This verification procedure does not change the acceptance-criteria status without a successful execution against the reviewed head, and it is not product-release approval. The Initialization Gate remains `REWORK` until its remaining owner, provider, platform-version, implementation-specific security/data, and evidence decisions are formally addressed.

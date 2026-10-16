@@ -3,11 +3,11 @@
 ## Identity
 
 - **Purpose:** a reusable, headless, local-first SDK boundary for authorized AI-provider connectivity in compatible Markellos Ecosystem applications.
-- **Initial provider direction:** OpenAI, subject to a separately approved implementation and provider requirements.
+- **Provider direction:** no provider is selected or approved for connectivity. A future selection requires separate provider, security, and implementation approval.
 - **Initial intended consumer:** AI Training Lab.
 - **Additional intended consumers:** StudyApp, Organize Your PC, and other compatible applications after their own approval.
 - **Project status:** foundation and governance baseline; no SDK API, OAuth flow, provider adapter, or live integration is implemented.
-- **Owners:** repository, product, technical, security, privacy, and release owners require recorded owner assignment before development readiness.
+- **Assigned owners:** the repository owner is the technical, security, privacy/data, and incident/operations owner. Product and release ownership remain `NEEDS_DECISION` before development readiness.
 
 ## Problem and value
 
@@ -22,4 +22,4 @@ Compatible local applications need a reusable way to integrate authorized AI use
 
 ## Criticality and data
 
-The planned scope handles authentication material and authorization state, so it is security-sensitive. Final data classification, owners, availability targets, and recovery targets require owner approval before implementation.
+The planned scope handles authentication material and authorization state, so it is security-sensitive. The owner-approved baseline is: no provider connectivity now; a future user-authorized OAuth 2.0 Authorization Code flow with PKCE where supported; native OS secure storage only; no prompt, response, or analytics retention by default; and redacted diagnostics. Provider selection, platform-version policy, availability targets, and recovery targets still require implementation-specific approval.

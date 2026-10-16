@@ -4,13 +4,13 @@ Ecosystem AI Connect is a planned, headless, local-first connectivity SDK for co
 
 ## Current status
 
-This repository contains the governed SDK foundation only. OAuth, OpenAI connectivity, credential persistence, package publication, and production operation are **not implemented**. The initial intended consumer is AI Training Lab; StudyApp, Organize Your PC, and other compatible applications are future consumers subject to their own integration approval.
+This repository contains the governed SDK foundation only. OAuth, provider connectivity, credential persistence, package publication, and production operation are **not implemented**. The initial intended consumer is AI Training Lab; StudyApp, Organize Your PC, and other compatible applications are future consumers subject to their own integration approval.
 
 ## Architecture boundary
 
 - Consumer applications own their user interface, local process, consent experience, and application authorization.
 - This SDK will own provider-neutral contracts, provider adapters, and safe integration guidance when approved work implements them.
-- OpenAI is the first intended provider. No other provider is approved by this repository baseline.
+- No provider is selected or approved by this repository baseline.
 - The selected infrastructure profile is `LOCAL_ONLY`. Calling an external provider is not the same as hosting an Ecosystem AI Connect service.
 
 ## Foundation authority
@@ -38,7 +38,8 @@ These commands verify the Foundation import and its local regression tests. They
 - [Test strategy](docs/testing/TEST_STRATEGY.md)
 - [Repository reduction audit](docs/governance/REPOSITORY_REDUCTION_AUDIT.md)
 - [Open decisions and deferred work](FUTURE_BACKLOG.md)
+- [Governance decisions](docs/governance/GOVERNANCE_DECISIONS.md)
 
 ## License
 
-No software license has been selected. Public repository visibility does not grant reuse rights. The repository owner must select and authorize a license before any open-source release or package publication.
+The repository is licensed under [Apache-2.0](LICENSE). This license decision does not approve package publication, provider connectivity, or a production release.

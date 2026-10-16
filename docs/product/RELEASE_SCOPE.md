@@ -4,6 +4,8 @@
 - **Release:** repository-foundation baseline
 - **Approval:** the repository-reduction task is authorized; no production, provider, package-publication, or release-completion approval is implied.
 
+**Subsequent governance decision:** [`AIC-CCR-001`](../governance/GOVERNANCE_DECISIONS.md#aic-ccr-001) records a separately owner-approved scope increase for ownership, future security/data baselines, and Apache-2.0 licensing. It does not alter this historical repository-reduction scope or approve runtime implementation.
+
 ## In scope
 
 | Outcome | Status |
